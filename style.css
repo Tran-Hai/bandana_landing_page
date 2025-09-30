@@ -1,0 +1,23 @@
+/* Tùy chỉnh nhỏ để đảm bảo cuộn mượt mà */
+html {
+    scroll-behavior: smooth;
+}
+/* Style cho sidebar giỏ hàng */
+/* ĐÃ TĂNG Z-INDEX LÊN MỨC CAO NHẤT ĐỂ KHÔNG BỊ CÁC THÀNH PHẦN KHÁC ĐÈ LÊN */
+.side-cart {
+    z-index: 9999; 
+}
+.side-cart-overlay {
+    z-index: 9998; 
+}
+/* Style cho thanh cuộn ngang của ảnh phụ */
+.sub-image-gallery::-webkit-scrollbar {
+    height: 4px;
+}
+.sub-image-gallery::-webkit-scrollbar-thumb {
+    background: #D84040; 
+    border-radius: 2px;
+}
+.sub-image-gallery::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}

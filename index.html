@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandana Shop - Khăn Bandana Độc Đáo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Thêm thư viện Font Awesome cho icon Giỏ hàng -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMD/cdw+JtXhV8YFzK6B1WpI/1y8S3vG/VzK2A8G/2w3Z6A1D/pA/1QzGzD9N5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#A31D1D', // Đỏ Maroon đậm - Tiêu đề, Logo
+                        'secondary': '#D84040', // Đỏ nổi bật - CTA, Nút Mua Ngay
+                        'background': '#F8F2DE', // Kem Rất Nhạt - Nền chung
+                        'neutral': '#ECDCBF', // Kem/Beige - Nền card, input
+                        'dark-text': '#333333', // Màu chữ đậm
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="bg-background font-sans text-dark-text">
+
+    <header class="sticky top-0 bg-neutral shadow-md z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="block hover:opacity-90 transition duration-300">
+                <!-- LOGO đã chỉnh h-full và header có py-6 để tăng kích thước -->
+                <img src="media/AVT ĐỎ ĐÔ.png" 
+                     alt="Logo Bandana Shop" 
+                     class="h-24 w-auto rounded-sm"
+                     onerror="this.src='https://placehold.co/120x64/A31D1D/FFFFFF?text=LOGO+BANDANA'" />
+            </a>
+
+            <nav class="hidden md:flex space-x-6 text-lg font-medium">
+                <a href="#home" class="nav-link hover:text-secondary transition duration-300">Trang Chủ</a>
+                <a href="#products" class="nav-link hover:text-secondary transition duration-300">Sản Phẩm</a>
+                <a href="#about" class="nav-link hover:text-secondary transition duration-300">Về Chúng Tớ</a>
+                <a href="#contact" class="nav-link hover:text-secondary transition duration-300">Liên Hệ</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Icon Giỏ hàng MỚI -->
+                <button id="cart-btn" onclick="toggleSideCart()" class="p-2 relative rounded-lg text-primary hover:bg-background/80 transition duration-300">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-secondary rounded-full">0</span>
+                </button>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-primary hover:bg-background transition duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-menu-backdrop" class="hidden fixed inset-0 bg-black/50 z-30 transition-opacity duration-300"></div>
+
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 md:w-80 bg-neutral/95 z-40 p-6 flex flex-col transition-transform duration-300 transform translate-x-full shadow-2xl">
+        
+        <div class="flex justify-end">
+            <button id="close-menu-btn" class="p-2 text-primary hover:text-secondary transition duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col space-y-6 text-xl font-bold text-dark-text mt-6">
+            <a href="#home" class="mobile-nav-link p-2 rounded-lg hover:bg-background/80 hover:text-primary transition duration-300 border-l-4 border-transparent hover:border-primary">Trang Chủ</a>
+            <a href="#products" class="mobile-nav-link p-2 rounded-lg hover:bg-background/80 hover:text-primary transition duration-300 border-l-4 border-transparent hover:border-primary">Sản Phẩm</a>
+            <a href="#about" class="mobile-nav-link p-2 rounded-lg hover:bg-background/80 hover:text-primary transition duration-300 border-l-4 border-transparent hover:border-primary">Về Chúng Tớ</a>
+            <a href="#contact" class="mobile-nav-link p-2 rounded-lg hover:bg-background/80 hover:text-primary transition duration-300 border-l-4 border-transparent hover:border-primary">Liên Hệ</a>
+        </nav>
+    </div>
+
+    <!-- Giỏ Hàng Dạng Sidebar (Side Cart) -->
+    <div id="side-cart-overlay" onclick="toggleSideCart()" class="side-cart-overlay hidden fixed inset-0 bg-black/50 transition-opacity duration-300"></div>
+
+    <div id="side-cart" class="side-cart fixed inset-y-0 right-0 w-full sm:w-96 bg-neutral p-6 flex flex-col transition-transform duration-300 transform translate-x-full shadow-2xl">
+        
+        <div class="flex justify-between items-center pb-4 border-b border-primary/20 mb-4">
+            <h3 class="text-2xl font-bold text-primary flex items-center">
+                <i class="fas fa-shopping-bag mr-3"></i> Giỏ Hàng
+            </h3>
+            <button onclick="toggleSideCart()" class="p-2 text-primary hover:text-secondary transition duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <!-- Danh sách sản phẩm trong giỏ hàng -->
+        <div id="cart-items-container" class="flex-grow overflow-y-auto pr-2 space-y-4">
+            <!-- Nội dung giỏ hàng được render bằng JS -->
+        </div>
+
+        <div id="cart-summary" class="border-t border-primary/20 pt-4 mt-4">
+            <div id="cart-message" class="text-center text-dark-text/70 italic hidden mb-4">
+                Giỏ hàng trống. Hãy chọn sản phẩm!
+            </div>
+            <!-- ĐÃ THAY ĐỔI CẤU TRÚC Ở ĐÂY -->
+            <p class="text-xl font-bold text-dark-text mb-4 flex justify-between items-center">
+                <!-- Đây là phần tổng sản phẩm và label -->
+                <span id="total-summary-label">
+                    <!-- Nội dung sẽ được cập nhật trong JS, ví dụ: "Tổng cộng (3 sản phẩm):" -->
+                </span>
+                <!-- Đây là phần tổng tiền -->
+                <span id="total-price" class="text-secondary">0 VNĐ</span>
+            </p>
+        </div>
+
+        <!-- Form thông tin khách hàng -->
+        <form id="cart-order-form" class="space-y-3 pt-4 border-t border-primary/20 mt-4">
+            <h4 class="text-lg font-semibold text-primary mb-2">Thông tin giao hàng</h4>
+            
+            <!-- Tên trường (name attribute) đã được kiểm tra lại lần cuối -->
+            <input type="text" id="customer-name" name="tenKhach" required placeholder="Tên của bạn *" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text">
+
+            <input type="tel" id="customer-phone" name="sdt" required placeholder="Số điện thoại *" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text">
+            
+            <textarea id="customer-address" name="diaChi" rows="2" required placeholder="Địa chỉ nhận hàng *" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text"></textarea>
+
+            <textarea id="customer-notes" name="ghiChu" rows="1" placeholder="Ghi chú (Tùy chọn)" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text"></textarea>
+            
+            <button type="submit" id="submit-cart-button" class="w-full bg-secondary text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-primary transition duration-300 mt-4 disabled:opacity-50" disabled>
+                HOÀN TẤT ĐẶT HÀNG
+            </button>
+            <div id="cart-loading-spinner" class="hidden text-center mt-4">
+                <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+                    <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+                </div>
+                <p class="text-sm text-primary mt-2">Đang xử lý đơn hàng...</p>
+            </div>
+            <div id="cart-message-box" class="hidden mt-4 p-3 rounded-lg text-sm font-medium text-white text-center"></div>
+        </form>
+    </div>
+
+
+    <div id="app-container" class="min-h-screen">
+
+        <main id="main-content" class="container mx-auto px-4 py-12">
+
+            <section id="home" class="mb-12">
+                <div class="w-full aspect-video rounded-xl shadow-2xl overflow-hidden border-4 border-primary/50 relative group">
+                    <img src="media/COVER.png" 
+                         alt="Poster Khăn Bandana Bộ Sưu Tập Mới" 
+                         class="w-full h-full object-cover transition duration-500 transform group-hover:scale-105"
+                         onerror="this.src='https://placehold.co/1600x900/A31D1D/ECDCBF?text=POSTER+16:9'" />
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end items-center p-8">
+                        <a href="#products" class="nav-link inline-block bg-secondary text-white font-bold py-3 px-8 rounded-full shadow-xl hover:bg-primary transition duration-300 transform hover:scale-110">
+                            KHÁM PHÁ BỘ SƯU TẬP
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="products" class="pt-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-10">Sản Phẩm Nổi Bật</h2>
+                
+                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div data-product-id="1" data-product-name="Nguyệt Sắc" data-product-price="129000" class="product-card bg-neutral p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        
+                        <div class="main-image-container">
+                            <img id="main-image-1" src="media/Pattern 1.png" alt="Khăn Nguyệt Sắc" class="w-full aspect-square object-cover rounded-lg mb-4 border-2 border-primary/30 story-trigger cursor-pointer" />
+                        </div>
+
+                        <div data-target-id="1" class="mt-2 mb-4 flex space-x-2 overflow-x-auto pb-2 sub-image-gallery">
+                            <p class="text-xs text-gray-500 italic">Đang tải ảnh phụ...</p>
+                        </div>
+
+                        <div class="story-trigger cursor-pointer">
+                            <h3 class="text-2xl font-semibold mb-2 text-dark-text hover:text-primary transition duration-300">Nguyệt Sắc</h3>
+                        </div>
+                        
+                        <p class="text-xl font-bold text-secondary mb-4">129.000 VNĐ</p>
+                        <p class="text-dark-text/70 mb-4">Họa tiết huyền bí, lấy cảm hứng từ ánh trăng và bầu trời đêm.</p>
+                        
+                        <!-- Nút MUA NGAY đã thay đổi để thêm vào giỏ hàng -->
+                        <button onclick="addToCart('Nguyệt Sắc')" class="w-full bg-primary text-white font-semibold py-3 rounded-full hover:bg-secondary transition duration-300 shadow-md">
+                            THÊM VÀO GIỎ
+                        </button>
+                    </div>
+
+                    <div data-product-id="2" data-product-name="Cánh Én Mùa Xuân" data-product-price="129000" class="product-card bg-neutral p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        
+                        <div class="main-image-container">
+                            <img id="main-image-2" src="media/patern 2.png" alt="Khăn Cánh Én Mùa Xuân" class="w-full aspect-square object-cover rounded-lg mb-4 border-2 border-primary/30 story-trigger cursor-pointer" />
+                        </div>
+                        
+                        <div data-target-id="2" class="mt-2 mb-4 flex space-x-2 overflow-x-auto pb-2 sub-image-gallery">
+                            <p class="text-xs text-gray-500 italic">Đang tải ảnh phụ...</p>
+                        </div>
+
+                        <div class="story-trigger cursor-pointer">
+                            <h3 class="text-2xl font-semibold mb-2 text-dark-text hover:text-primary transition duration-300">Cánh Én Mùa Xuân</h3>
+                        </div>
+                        
+                        <p class="text-xl font-bold text-secondary mb-4">129.000 VNĐ</p>
+                        <p class="text-dark-text/70 mb-4">Màu đỏ rực rỡ, họa tiết hoa mai và chim én báo hiệu tin vui.</p>
+
+                        <!-- Nút MUA NGAY đã thay đổi để thêm vào giỏ hàng -->
+                        <button onclick="addToCart('Cánh Én Mùa Xuân')" class="w-full bg-primary text-white font-semibold py-3 rounded-full hover:bg-secondary transition duration-300 shadow-md">
+                            THÊM VÀO GIỎ
+                        </button>
+                    </div>
+
+                    <div data-product-id="3" data-product-name="Xoắn Sắc Núi" data-product-price="129000" class="product-card bg-neutral p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        
+                        <div class="main-image-container">
+                            <img id="main-image-3" src="media/patern 3.png" alt="Khăn Xoắn Sắc Núi" class="w-full aspect-square object-cover rounded-lg mb-4 border-2 border-primary/30 story-trigger cursor-pointer" />
+                        </div>
+
+                        <div data-target-id="3" class="mt-2 mb-4 flex space-x-2 overflow-x-auto pb-2 sub-image-gallery">
+                            <p class="text-xs text-gray-500 italic">Đang tải ảnh phụ...</p>
+                        </div>
+
+                        <div class="story-trigger cursor-pointer">
+                            <h3 class="text-2xl font-semibold mb-2 text-dark-text hover:text-primary transition duration-300">Xoắn Sắc Núi</h3>
+                        </div>
+                        
+                        <p class="text-xl font-bold text-secondary mb-4">129.000 VNĐ</p>
+                        <p class="text-dark-text/70 mb-4">Hoa văn thổ cẩm hiện đại, mang hơi thở mạnh mẽ của núi rừng.</p>
+                        
+                        <!-- Nút MUA NGAY đã thay đổi để thêm vào giỏ hàng -->
+                        <button onclick="addToCart('Xoắn Sắc Núi')" class="w-full bg-primary text-white font-semibold py-3 rounded-full hover:bg-secondary transition duration-300 shadow-md">
+                            THÊM VÀO GIỎ
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="pt-12 mt-12">
+                <h2 class="text-3xl font-bold text-primary mb-10 text-center md:text-4xl">Về Chúng Tớ</h2>
+                
+                <div id="about-content" class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    </div>
+            </section>
+            
+            <!-- CẬP NHẬT PHẦN LIÊN HỆ -->
+            <section id="contact" class="pt-12 mt-12">
+                <div class="bg-primary p-8 rounded-xl shadow-xl text-white text-center">
+                    <h2 class="text-3xl font-bold mb-4">Liên Hệ</h2>
+                    <p class="mb-4">Bạn có bất kỳ câu hỏi nào? Hãy liên hệ với chúng tớ!</p>
+                    
+                    <p class="font-semibold mb-2">
+                        Fanpage: 
+                        <a href="https://www.facebook.com/sackhanluakechuyenviet" target="_blank" class="text-white hover:text-secondary transition duration-300">
+                            Khăn lụa kể chuyện Việt
+                        </a>
+                    </p>
+                    <p class="font-semibold">Hotline: 0342.464.303</p>
+                </div>
+            </section>
+
+        </main>
+
+        <div id="story-content" class="hidden container mx-auto px-4 py-12">
+            <button onclick="showMainContent(); smoothScroll('#home');" class="text-primary font-semibold text-lg mb-6 flex items-center hover:text-secondary transition duration-300">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Quay lại Trang Chủ
+            </button>
+            
+            <article id="story-article" class="bg-neutral p-8 rounded-xl shadow-2xl border-t-4 border-primary">
+                <h1 id="story-title" class="text-4xl font-extrabold text-dark-text mb-4"></h1>
+                <div class="w-full aspect-square mb-6">
+                    <img id="story-image" src="" alt="Ảnh Bandana Câu Chuyện" class="w-full h-full object-cover rounded-lg border-2 border-gray-200" onerror="this.src='https://placehold.co/800x800/CCCCCC/333333?text=Anh+San+Pham+1:1';" />
+                </div>
+                <div id="story-text" class="prose max-w-none text-lg text-dark-text/80 leading-relaxed">
+                    </div>
+            </article>
+        </div>
+
+    </div>
+    
+    <!-- Đã xóa Order Modal (modal-overlay) cũ -->
+
+    <script src="scripts.js">
+        
+    </script>
+
+</body>
+</html>
