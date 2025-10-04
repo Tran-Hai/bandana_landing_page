@@ -1,5 +1,4 @@
 // --- CẤU HÌNH API GOOGLE APPS SCRIPT ---
-// !!! BẮT BUỘC THAY THẾ URL NÀY BẰNG URL WEB APP CỦA BẠN SAU KHI TRIỂN KHAI APPS SCRIPT !!!
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfQKGNrfd74kTI5Me7jV72DEsTPUoqoVAvin-FvlrNANlj31i_9K9smicTjmMZzn7CRg/exec"; 
 // ------------------------------------------
 
@@ -15,18 +14,7 @@ const productStories = {
             'media/nguyet sac/DSC05311.jpg',
         ],
         price: 129000,
-        story: `
-            <h2 class="text-2xl font-bold text-primary mt-6 mb-3">Nguyệt Sắc: Nguồn Cảm Hứng Ánh Trăng</h2>
-            <p>Trong ký ức của người Dao Tiền, mỗi mảnh vải chàm không chỉ là vật dụng đời thường, mà là cuốn sách thiêng khắc ghi linh hồn núi rừng. Trên nền vải xanh thẳm, những họa tiết đồng xu và hạt bí không đơn thuần là hoa văn trang trí đó là ngôn ngữ của tổ tiên, là lời nhắn gửi vượt thời gian.</p><br>
-            <p>Tương truyền rằng, ngày xưa khi dòng người Dao Tiền theo bước chân thần núi tìm nơi lập bản, họ được ban cho hai báu vật. Đồng xu bạc - biểu tượng của mặt trăng tròn đầy, soi sáng hành trình giữa đêm mịt mùng, cũng là dấu ấn của sự trọn vẹn và sung túc. Hạt bí nhỏ bé - nhưng bên trong chứa đựng mạch sống bất tận, tượng trưng cho sự sinh sôi, bền bỉ, để con cháu muôn đời không bao giờ cạn nguồn sống. Từ đó, trên từng tấm váy, áo, khăn đội đầu, bàn tay người phụ nữ Dao Tiền kiên nhẫn dệt nên câu chuyện. Mỗi đường nét như tiếng thì thầm của mẹ dành cho con: “Hãy nhớ gốc rễ, hãy giữ lấy cội nguồn, thì dù bão tố thế nào, sự sống vẫn vững bền như núi.”</p><br>
-            <p>Ngày hội xuân, dưới ánh nắng trải vàng trên nương, váy áo Dao Tiền ngân vang tiếng bạc leng keng, hoa văn đồng xu xoay vòng như ánh trăng rằm, hạt bí khắc họa nhịp đập mùa màng. Người đi qua, kẻ dừng lại, đều nhận ra rằng đó không đơn thuần là trang phục mà là một huyền thoại sống động, nơi đất, trời và con người hòa làm một, được dệt bằng niềm tin, sự kiêu hãnh và tình yêu với quê hương.</p>
-            <ul class="list-disc list-inside mt-4 space-y-2">
-                <li><b>Chất liệu:</b> Lụa Latin cao cấp, mềm mại, bóng mượt.</li>
-                <li><b>Kích thước:</b> 70x70cm, hoàn hảo cho việc đeo cổ, buộc tóc hoặc trang trí túi xách.</li>
-                <li><b>Phong cách:</b> Thích hợp với trang phục cá tính, hơi hướng dark academia hoặc street style.</li>
-            </ul>
-            <p class="mt-4 italic text-sm text-gray-500">Mặc Nguyệt Sắc, bạn mang theo vẻ huyền bí và tĩnh lặng của màn đêm, thu hút mọi ánh nhìn.</p>
-        `
+        // Story đã được chuyển sang story.html
     },
     'Cánh Én Mùa Xuân': {
         image: 'media/patern 2.png',
@@ -38,17 +26,7 @@ const productStories = {
             'media/canh en/DSC05299.jpg',
         ],
         price: 129000,
-        story: `
-            <h2 class="text-2xl font-bold text-primary mt-6 mb-3">Cánh Én Mùa Xuân: Vị Tết Truyền Thống</h2>
-            <p>Ngày xưa, ở miền núi Tây Bắc, có một cô gái Thái xinh đẹp tên là Ban. Nàng đem lòng yêu Khum - chàng trai nghèo nhưng hiền lành, thật thà. Tình yêu của họ giản dị mà sâu đậm, như dòng suối mát trong rừng. Thế nhưng, cha của Ban vì tham giàu sang đã hứa gả nàng cho một lão phú hộ trong bản.</p><br>
-            <p>Đêm trước ngày cưới, trái tim tan nát, Ban bỏ trốn. Nàng buộc chiếc khăn piêu vào cửa nhà Khum như một lời nhắn gửi, rồi dấn bước vào núi rừng, mong tìm gặp người yêu. Ban chạy qua bao đèo dốc, vượt qua bao khe suối, đến khi kiệt sức, nàng ngã xuống bên một tảng đá. Sáng hôm sau, từ nơi ấy mọc lên một loài hoa trắng muốt cánh hoa e ấp như bàn tay thiếu nữ, tinh khôi như tấm lòng trong sáng. Người ta gọi đó là hoa Ban, loài hoa tượng trưng cho tình yêu thủy chung của người con gái Thái. Và lạ thay, mùa hoa Ban nở cũng là lúc những cánh én đầu tiên trở về, báo hiệu xuân sang. Người dân tin rằng, hoa Ban và én xuân là lời nhắn nhủ của nàng Ban: dù tình yêu tan vỡ, mùa xuân vẫn trở lại, và khát vọng yêu thương vẫn sống mãi cùng đất trời. Từ đó, hoa Ban cùng cánh én trở thành biểu tượng trong đời sống tinh thần của người Thái. Họ dệt hoa Ban, vẽ cánh én lên thổ cẩm, để mỗi tấm vải không chỉ là trang sức, mà còn là câu chuyện tình yêu, là niềm tin vào mùa xuân vĩnh cửu.</p>
-            <ul class="list-disc list-inside mt-4 space-y-2">
-                <li><b>Chất liệu:</b> Vải lụa Latin nhẹ, bay bổng.</li>
-                <li><b>Kích thước:</b> 70x70cm, lý tưởng cho những chuyến du xuân và các dịp lễ hội.</li>
-                <li><b>Phong cách:</b> Phù hợp với trang phục áo dài cách tân, váy đầm nhẹ nhàng.</li>
-            </ul>
-            <p class="mt-4 italic text-sm text-gray-500">Mặc Cánh Én Mùa Xuân, bạn lan tỏa sự vui tươi, mang theo niềm tin vào những điều tốt đẹp.</p>
-        `
+        // Story đã được chuyển sang story.html
     },
     'Xoắn Sắc Núi': {
         image: 'media/patern 3.png',
@@ -60,16 +38,7 @@ const productStories = {
             'media/xoan sac nui/DSC05305.jpg',
         ],
         price: 129000,
-        story: `
-            <h2 class="text-2xl font-bold text-primary mt-6 mb-3">Xoắn Sắc Núi: Hơi Thở Thổ Cẩm Hiện Đại</h2>
-            <p>Lấy cảm hứng từ hoa văn thổ cẩm của các dân tộc miền núi phía Bắc, Xoắn Sắc Núi kết hợp các hình khối hình học truyền thống với tông màu đất và xanh rêu hiện đại. Chiếc khăn thể hiện sự mạnh mẽ, phóng khoáng và tinh thần khám phá. Đây là lựa chọn hoàn hảo cho những người yêu thích du lịch và phong cách Boho-Chic.</p>
-            <ul class="list-disc list-inside mt-4 space-y-2">
-                <li><b>Chất liệu:</b> Vải lụa Latin dày dặn, đứng form.</li>
-                <li><b>Kích thước:</b> 70x70cm, dễ dàng biến tấu thành khăn quàng, băng đô hoặc buộc túi xách.</li>
-                <li><b>Phong cách:</b> Lý tưởng cho trang phục dã ngoại, du lịch bụi hoặc layer cùng áo khoác da.</li>
-            </ul>
-            <p class="mt-4 italic text-sm text-gray-500">Mặc Xoắn Sắc Núi, bạn thể hiện cá tính mạnh mẽ và tinh thần tự do, không bị giới hạn.</p>
-        `
+        // Story đã được chuyển sang story.html
     }
 };
 
@@ -90,12 +59,6 @@ const aboutContent = [
 ];
 
 // --- GLOBAL UI ELEMENTS ---
-const mainContent = document.getElementById('main-content');
-const storyContent = document.getElementById('story-content');
-
-// Cart Elements
-const sideCart = document.getElementById('side-cart');
-const sideCartOverlay = document.getElementById('side-cart-overlay');
 const cartCountDisplay = document.getElementById('cart-count');
 const cartItemsContainer = document.getElementById('cart-items-container');
 const cartSummaryMessage = document.getElementById('cart-message');
@@ -103,15 +66,11 @@ const submitCartButton = document.getElementById('submit-cart-button');
 const cartLoadingSpinner = document.getElementById('cart-loading-spinner');
 const cartMessageBox = document.getElementById('cart-message-box');
 const cartOrderForm = document.getElementById('cart-order-form');
-// Đã đổi tên biến để phù hợp với HTML mới
 const totalSummaryLabel = document.getElementById('total-summary-label');
 const totalPriceDisplay = document.getElementById('total-price');
 
-// Sidebar Elements
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const closeMenuBtn = document.getElementById('close-menu-btn');
-const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop'); 
+const sideCart = document.getElementById('side-cart');
+const sideCartOverlay = document.getElementById('side-cart-overlay');
 
 const aboutContentDiv = document.getElementById('about-content'); 
 
@@ -135,43 +94,6 @@ function smoothScroll(targetId) {
     }
     return false;
 }
-
-// --- CHUYỂN ĐỔI GIỮA CÁC VIEW ---
-
-function showMainContent() {
-    mainContent.classList.remove('hidden');
-    storyContent.classList.add('hidden');
-}
-
-function showStoryContent() {
-    mainContent.classList.add('hidden');
-    storyContent.classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openStory(productName) {
-    const storyData = productStories[productName];
-
-    if (storyData) {
-        document.getElementById('story-title').textContent = productName;
-        document.getElementById('story-image').src = storyData.image; 
-        document.getElementById('story-text').innerHTML = storyData.story;
-        showStoryContent();
-    } else {
-        console.error('Không tìm thấy câu chuyện cho sản phẩm:', productName);
-    }
-}
-
-document.querySelectorAll('.story-trigger').forEach(trigger => {
-    const productCard = trigger.closest('.product-card'); 
-    const productName = productCard ? productCard.getAttribute('data-product-name') : null;
-
-    if (productName) {
-        trigger.addEventListener('click', function() {
-            openStory(productName);
-        });
-    }
-});
 
 function renderSubImages() {
     // Logic render ảnh phụ vẫn giữ nguyên
@@ -231,7 +153,7 @@ function renderAboutContent() {
     aboutContentDiv.innerHTML = contentHtml;
 }
 
-// --- LOGIC GIỎ HÀNG MỚI ---
+// --- LOGIC GIỎ HÀNG ---
 
 // Hàm cập nhật số lượng trên icon giỏ hàng
 function updateCartCount() {
@@ -332,7 +254,6 @@ function renderCartItems() {
     }
 
     // Cập nhật tổng cộng
-    // Sửa lỗi chồng chéo: Gán toàn bộ label vào một span duy nhất.
     totalSummaryLabel.textContent = `Tổng cộng (${totalItemCount} sản phẩm):`; 
     totalPriceDisplay.textContent = formatCurrency(totalCartPrice);
     updateCartCount();
@@ -405,12 +326,11 @@ cartOrderForm.addEventListener('submit', async function(event) {
         cart.forEach(item => {
             
             // CẤU TRÚC DỮ LIỆU ĐÃ ĐƯỢC ĐIỀU CHỈNH LẠI
-            // ĐÃ THÊM encodeURIComponent VÀO TẤT CẢ CÁC TRƯỜNG CÓ KÝ TỰ VIỆT NAM HOẶC KHOẢNG TRẮNG
             const itemData = {
                 thoiGian: encodeURIComponent(timeStamp),            // 1. THỜI GIAN (A)
-                tenSanPham: encodeURIComponent(item.name),          // 2. SẢN PHẨM (B) <-- ĐÃ THÊM ENCODE
+                tenSanPham: encodeURIComponent(item.name),          // 2. SẢN PHẨM (B)
                 soLuong: encodeURIComponent(item.quantity),         // 3. SỐ LƯỢNG (C)
-                tenKhach: encodeURIComponent(customerName),         // 4. TÊN (D) <-- ĐÃ THÊM ENCODE
+                tenKhach: encodeURIComponent(customerName),         // 4. TÊN (D)
                 sdt: encodeURIComponent(sdt),                       // 5. SĐT (E)
                 diaChi: encodeURIComponent(diaChi),                 // 6. ĐỊA CHỈ (F)
                 ghiChu: encodeURIComponent(ghiChu)                  // 7. GHI CHÚ (G)
@@ -425,7 +345,6 @@ cartOrderForm.addEventListener('submit', async function(event) {
             const fetchPromise = fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
                 headers: {
-                    // Vẫn giữ Content-Type này, nhưng body đã được mã hóa đầy đủ
                     'Content-Type': 'application/x-www-form-urlencoded' 
                 },
                 body: body,
@@ -476,6 +395,10 @@ cartOrderForm.addEventListener('submit', async function(event) {
 });
 
 // --- XỬ LÝ MOBILE SIDEBAR ---
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const closeMenuBtn = document.getElementById('close-menu-btn');
+const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop'); 
 
 function toggleMobileMenu() {
     const isOpen = mobileMenu.classList.contains('translate-x-0');
@@ -517,5 +440,4 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSubImages();
     renderAboutContent();
     updateCartCount(); // Cập nhật số lượng ban đầu
-    // Không render cart ngay lập tức, chỉ render khi mở side cart
 });

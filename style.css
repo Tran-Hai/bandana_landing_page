@@ -3,7 +3,6 @@ html {
     scroll-behavior: smooth;
 }
 /* Style cho sidebar giỏ hàng */
-/* ĐÃ TĂNG Z-INDEX LÊN MỨC CAO NHẤT ĐỂ KHÔNG BỊ CÁC THÀNH PHẦN KHÁC ĐÈ LÊN */
 .side-cart {
     z-index: 9999; 
 }

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu chuyện của "SẮC"</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Thêm font Crimson Pro cho nội dung câu chuyện -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Thêm thư viện Font Awesome cho icon Giỏ hàng -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMD/cdw+JtXhV8YFzK6B6B1WpI/1y8S3vG/VzK2A8G/2w3Z6A1D/pA/1QzGzD9N5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#A31D1D', // Đỏ Maroon đậm
+                        'secondary': '#D84040', // Đỏ nổi bật
+                        'background': '#F8F2DE', // Kem Rất Nhạt (Đồng nhất với trang chủ) - Dùng cho màu chữ mới
+                        'neutral': '#ECDCBF', // Kem/Beige
+                        'dark-text': '#333333', // Màu chữ đậm
+                        // Thêm màu nền mới cho các Story Section
+                        'block-dark': '#383838', // Xám đậm
+                        'block-blue': '#1E2A4F', // Xanh Navy đậm
+                        'block-green': '#50725C', // Xanh rêu đậm
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        // Định nghĩa font mới cho các đoạn văn bản câu chuyện
+                        'serif-story': ['Crimson Pro', 'serif'], 
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .story-section {
+            /* Đã hoàn nguyên: Loại bỏ box-shadow, thêm lại border-bottom */
+            padding: 4rem 0;
+            margin-bottom: 0;
+            border-radius: 0; 
+            border-bottom: 2px dashed #ECDCBF;
+            box-shadow: none;
+        }
+        .story-section:last-child {
+            border-bottom: none;
+        }
+        /* ĐIỀU CHỈNH KÍCH THƯỚC LOGO TÙY CHỈNH BẰNG CSS */
+        .brand-logo {
+            height: 48px; 
+            width: auto;
+            /* Dùng margin âm để logo nhô ra mà không làm thay đổi chiều cao Header */
+            margin-top: -0.5rem; /* Tùy chỉnh để nhô ra trên mobile */
+            margin-bottom: -0.5rem; 
+        }
+        @media (min-width: 768px) {
+            .brand-logo {
+                height: 100px; 
+                margin-top: -0.75rem; /* Tùy chỉnh để nhô ra trên desktop */
+                margin-bottom: -0.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background font-sans text-dark-text">
+
+    <header class="bg-neutral shadow-md sticky top-0 z-50">
+        <!-- Đã giữ nguyên py-4 để Header không quá to -->
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center"> 
+            <!-- Nút Quay lại Trang Chủ -->
+            <a href="index.html" class="flex items-center text-primary hover:text-secondary transition duration-300 font-semibold p-2 rounded-lg hover:bg-background/80">
+                <i class="fas fa-arrow-left mr-2"></i> 
+                Quay lại Trang Chủ
+            </a>
+            
+            <!-- LOGO THƯƠNG HIỆU: Đã áp dụng margin âm trong CSS -->
+            <img src="media/AVT ĐỎ ĐÔ.png" 
+                 alt="Logo Bandana Shop" 
+                 class="brand-logo rounded-sm"
+                 onerror="this.src='https://placehold.co/120x40/A31D1D/FFFFFF?text=LOGO+BANDANA'" />
+
+            <a href="index.html#products" class="text-primary hover:text-secondary transition duration-300 font-semibold p-2 rounded-lg hover:bg-background/80">
+                MUA SẮM NGAY <i class="fas fa-shopping-bag ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Đã giảm padding ngang của MAIN container từ px-4 xuống px-2 -->
+    <main class="container mx-auto px-2 py-12">
+
+        <!-- TIÊU ĐỀ CHÍNH ĐÃ ĐƯỢC BỎ THEO YÊU CẦU -->
+        <div class="mb-16"></div> 
+
+        <!-- Khăn 1: Nguyệt Sắc (Ảnh Trái) -->
+        <section class="story-section text-dark-text">
+            <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 md:px-8">
+                
+                <!-- Cột Ảnh: Đã hoàn nguyên bg-neutral -->
+                <div class="md:order-1 order-2 bg-neutral p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.01]">
+                    <img src="media/Pattern 1.png" 
+                         alt="Khăn Nguyệt Sắc" 
+                         class="w-full aspect-square object-cover rounded-xl border-4 border-primary/30"
+                         onerror="this.src='https://placehold.co/800x800/1E2A4F/FFFFFF?text=Nguyệt+Sắc'" />
+                </div>
+                
+                <!-- Cột Nội Dung -->
+                <div class="md:order-2 order-1 p-4">
+                    <h3 class="text-4xl font-bold text-secondary mb-4">01. NGUYỆT SẮC</h3>
+                    <!-- Đã thêm class font-serif-story và text-justify -->
+                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 font-serif-story text-justify">
+                        <span class="block">
+                            Trong ký ức của người Dao Tiền, mỗi mảnh vải chàm không chỉ là vật dụng đời thường, mà là cuốn sách thiêng khắc ghi linh hồn núi rừng. Trên nền vải xanh thẳm, những họa tiết đồng xu và hạt bí không đơn thuần là hoa văn trang trí đó là ngôn ngữ của tổ tiên, là lời nhắn gửi vượt thời gian.
+                        </span>
+                        <span class="block">
+                            Tương truyền rằng, ngày xưa khi dòng người Dao Tiền theo bước chân thần núi tìm nơi lập bản, họ được ban cho hai báu vật. Đồng xu bạc - biểu tượng của mặt trăng tròn đầy, soi sáng hành trình giữa đêm mịt mùng, cũng là dấu ấn của sự trọn vẹn và sung túc. Hạt bí nhỏ bé - nhưng bên trong chứa đựng mạch sống bất tận, tượng trưng cho sự sinh sôi, bền bỉ, để con cháu muôn đời không bao giờ cạn nguồn sống.
+                        </span>
+                        <span class="block">
+                            Từ đó, trên từng tấm váy, áo, khăn đội đầu, bàn tay người phụ nữ Dao Tiền kiên nhẫn dệt nên câu chuyện. Mỗi đường nét như tiếng thì thầm của mẹ dành cho con: “Hãy nhớ gốc rễ, hãy giữ lấy cội nguồn, thì dù bão tố thế nào, sự sống vẫn vững bền như núi.”
+                        </span>
+                         <span class="block font-medium">
+                            Ngày hội xuân, dưới ánh nắng trải vàng trên nương, váy áo Dao Tiền ngân vang tiếng bạc leng keng, hoa văn đồng xu xoay vòng như ánh trăng rằm, hạt bí khắc họa nhịp đập mùa màng. Người đi qua, kẻ dừng lại, đều nhận ra rằng đó không đơn thuần là trang phục mà là một huyền thoại sống động, nơi đất, trời và con người hòa làm một, được dệt bằng niềm tin, sự kiêu hãnh và tình yêu với quê hương.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Khăn 2: Cánh Én Mùa Xuân (Ảnh Phải) -->
+        <section class="story-section text-dark-text">
+            <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 md:px-8">
+                
+                <!-- Cột Nội Dung (Đảo vị trí) -->
+                <div class="md:order-1 order-1 p-4">
+                    <h3 class="text-4xl font-bold text-secondary mb-4">02. CÁNH ÉN MÙA XUÂN</h3>
+                    <!-- Đã thêm class font-serif-story và text-justify -->
+                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 font-serif-story text-justify">
+                        <span class="block">
+                            Ngày xưa, ở miền núi Tây Bắc, có một cô gái Thái xinh đẹp tên là Ban. Nàng đem lòng yêu Khum - chàng trai nghèo nhưng hiền lành, thật thà. Tình yêu của họ giản dị mà sâu đậm, như dòng suối mát trong rừng. Thế nhưng, cha của Ban vì tham giàu sang đã hứa gả nàng cho một lão phú hộ trong bản. 
+                        </span>
+                        <span class="block font-medium">
+                            Đêm trước ngày cưới, trái tim tan nát, Ban bỏ trốn. Nàng buộc chiếc khăn piêu vào cửa nhà Khum như một lời nhắn gửi, rồi dấn bước vào núi rừng, mong tìm gặp người yêu. Ban chạy qua bao đèo dốc, vượt qua bao khe suối, đến khi kiệt sức, nàng ngã xuống bên một tảng đá. Sáng hôm sau, từ nơi ấy mọc lên một loài hoa trắng muốt cánh hoa e ấp như bàn tay thiếu nữ, tinh khôi như tấm lòng trong sáng. Người ta gọi đó là hoa Ban, loài hoa tượng trưng cho tình yêu thủy chung của người con gái Thái. Và lạ thay, mùa hoa Ban nở cũng là lúc những cánh én đầu tiên trở về, báo hiệu xuân sang. Người dân tin rằng, hoa Ban và én xuân là lời nhắn nhủ của nàng Ban: dù tình yêu tan vỡ, mùa xuân vẫn trở lại, và khát vọng yêu thương vẫn sống mãi cùng đất trời. Từ đó, hoa Ban cùng cánh én trở thành biểu tượng trong đời sống tinh thần của người Thái. Họ dệt hoa Ban, vẽ cánh én lên thổ cẩm, để mỗi tấm vải không chỉ là trang sức, mà còn là câu chuyện tình yêu, là niềm tin vào mùa xuân vĩnh cửu.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- Cột Ảnh: Đã hoàn nguyên bg-neutral -->
+                <div class="md:order-2 order-2 bg-neutral p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.01]">
+                    <img src="media/patern 2.png" 
+                         alt="Khăn Cánh Én Mùa Xuân" 
+                         class="w-full aspect-square object-cover rounded-xl border-4 border-primary/30"
+                         onerror="this.src='https://placehold.co/800x800/D84040/FFFFFF?text=Cánh+Én'" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Khăn 3: Xoắn Sắc Núi (Ảnh Trái) -->
+        <section class="story-section text-dark-text">
+            <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 md:px-8">
+                
+                <!-- Cột Ảnh: Đã hoàn nguyên bg-neutral -->
+                <div class="md:order-1 order-2 bg-neutral p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.01]">
+                    <img src="media/patern 3.png" 
+                         alt="Khăn Xoắn Sắc Núi" 
+                         class="w-full aspect-square object-cover rounded-xl border-4 border-primary/30"
+                         onerror="this.src='https://placehold.co/800x800/50725C/FFFFFF?text=Xoắn+Sắc+Núi'" />
+                </div>
+                
+                <!-- Cột Nội Dung -->
+                <div class="md:order-2 order-1 p-4">
+                    <h3 class="text-4xl font-bold text-secondary mb-4">03. XOẮN SẮC NÚI</h3>
+                    <!-- Đã thêm class font-serif-story và text-justify -->
+                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 font-serif-story text-justify">
+                        <span class="block">
+                            Trong tâm thức người H’Mông, mỗi tấm thổ cẩm là một bản sử thi không lời. Vòng xoắn ốc kể về dòng chảy bất tận của sự sống, hình vuông gợi mặt đất vững chãi nơi bản làng neo lại giữa đại ngàn, còn những tam giác nhọn vươn lên như dãy núi vừa che chở vừa thử thách con người. Không có chữ viết, phụ nữ H’Mông đã gửi trí nhớ và linh hồn cả dân tộc vào từng đường dệt, để hoa văn không chỉ là trang trí mà còn là lời thề với núi rừng, là bản đồ tâm linh kết nối con người cùng vũ trụ. Mỗi họa tiết trở thành một ngôn ngữ biểu tượng, vừa phản ánh đời sống kinh tế, văn hóa, xã hội, vừa mở ra chiều sâu của niềm tin và thế giới tâm linh độc đáo. 
+                        </span>
+                        <span class="block font-medium">
+                            Khoác lên mình tấm thổ cẩm, người H’Mông mang theo vẻ đẹp, lịch sử và linh hồn tổ tiên; những hoa văn ấy, như nhịp thở của núi rừng, vẫn ngân vang qua từng thế hệ, trở thành bản sắc bền bỉ và sự hòa hợp vĩnh cửu giữa con người với thiên nhiên, giữa hiện tại và vĩnh hằng.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center pt-16">
+            <a href="index.html#products" class="inline-block bg-primary text-white font-bold py-4 px-10 rounded-full text-xl shadow-lg hover:bg-secondary transition duration-300 transform hover:scale-105">
+                Xem Sản Phẩm & Đặt Mua Ngay
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="bg-neutral text-dark-text text-center py-6 mt-12 shadow-inner">
+    </footer>
+
+</body>
+</html>
