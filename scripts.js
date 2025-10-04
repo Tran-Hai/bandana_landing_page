@@ -62,7 +62,9 @@ const productStories = {
         price: 129000,
         story: `
             <h2 class="text-2xl font-bold text-primary mt-6 mb-3">Xoắn Sắc Núi: Hơi Thở Thổ Cẩm Hiện Đại</h2>
-            <p>Lấy cảm hứng từ hoa văn thổ cẩm của các dân tộc miền núi phía Bắc, Xoắn Sắc Núi kết hợp các hình khối hình học truyền thống với tông màu đất và xanh rêu hiện đại. Chiếc khăn thể hiện sự mạnh mẽ, phóng khoáng và tinh thần khám phá. Đây là lựa chọn hoàn hảo cho những người yêu thích du lịch và phong cách Boho-Chic.</p>
+            <p>Trong tâm thức người H’Mông, mỗi tấm thổ cẩm là một bản sử thi không lời. Vòng xoắn ốc kể về dòng chảy bất tận của sự sống, hình vuông gợi mặt đất vững chãi nơi bản làng neo lại giữa đại ngàn, còn những tam giác nhọn vươn lên như dãy núi vừa che chở vừa thử thách con người. Không có chữ viết, phụ nữ H’Mông đã gửi trí nhớ và linh hồn cả dân tộc vào từng đường dệt, để hoa văn không chỉ là trang trí mà còn là lời thề với núi rừng, là bản đồ tâm linh kết nối con người cùng vũ trụ. Mỗi họa tiết trở thành một ngôn ngữ biểu tượng, vừa phản ánh đời sống kinh tế, văn hóa, xã hội, vừa mở ra chiều sâu của niềm tin và thế giới tâm linh độc đáo. 
+</p><br>
+            <p>Khoác lên mình tấm thổ cẩm, người H’Mông mang theo vẻ đẹp, lịch sử và linh hồn tổ tiên; những hoa văn ấy, như nhịp thở của núi rừng, vẫn ngân vang qua từng thế hệ, trở thành bản sắc bền bỉ và sự hòa hợp vĩnh cửu giữa con người với thiên nhiên, giữa hiện tại và vĩnh hằng.</p>
             <ul class="list-disc list-inside mt-4 space-y-2">
                 <li><b>Chất liệu:</b> Vải lụa Latin dày dặn, đứng form.</li>
                 <li><b>Kích thước:</b> 70x70cm, dễ dàng biến tấu thành khăn quàng, băng đô hoặc buộc túi xách.</li>
