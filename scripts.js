@@ -38,7 +38,16 @@ const productStories = {
             'media/xoan sac nui/DSC05305.jpg',
         ],
         price: 129000,
-        // Story đã được chuyển sang story.html
+        story: `
+            <h2 class="text-2xl font-bold text-primary mt-6 mb-3">Xoắn Sắc Núi: Hơi Thở Thổ Cẩm Hiện Đại</h2>
+            <p>Lấy cảm hứng từ hoa văn thổ cẩm của các dân tộc miền núi phía Bắc, Xoắn Sắc Núi kết hợp các hình khối hình học truyền thống với tông màu đất và xanh rêu hiện đại. Chiếc khăn thể hiện sự mạnh mẽ, phóng khoáng và tinh thần khám phá. Đây là lựa chọn hoàn hảo cho những người yêu thích du lịch và phong cách Boho-Chic.</p>
+            <ul class="list-disc list-inside mt-4 space-y-2">
+                <li><b>Chất liệu:</b> Vải lụa Latin dày dặn, đứng form.</li>
+                <li><b>Kích thước:</b> 70x70cm, dễ dàng biến tấu thành khăn quàng, băng đô hoặc buộc túi xách.</li>
+                <li><b>Phong cách:</b> Lý tưởng cho trang phục dã ngoại, du lịch bụi hoặc layer cùng áo khoác da.</li>
+            </ul>
+            <p class="mt-4 italic text-sm text-gray-500">Mặc Xoắn Sắc Núi, bạn thể hiện cá tính mạnh mẽ và tinh thần tự do, không bị giới hạn.</p>
+        `
     }
 };
 
