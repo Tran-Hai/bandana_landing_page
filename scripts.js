@@ -5,13 +5,13 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfQKGNrfd74kTI
 // MOCK DATA: Giả lập cơ sở dữ liệu cho các câu chuyện của khăn
 const productStories = {
     'Nguyệt Sắc': {
-        image: 'media/Pattern 1.png', 
+        image: 'media/patern 3.png', 
         subImages: [
-            'media/Pattern 1.png',
-            'media/nguyet sac/DSC05198.jpg',
-            'media/nguyet sac/DSC05252.jpg',
-            'media/nguyet sac/DSC05281.jpg',
-            'media/nguyet sac/DSC05311.jpg',
+            'media/patern 3.png',
+            'media/xoan sac nui/DSC05215.jpg',
+            'media/xoan sac nui/DSC05256.jpg',
+            'media/xoan sac nui/DSC05275.jpg',
+            'media/xoan sac nui/DSC05305.jpg',
         ],
         price: 129000,
         // Story đã được chuyển sang story.html
@@ -29,13 +29,13 @@ const productStories = {
         // Story đã được chuyển sang story.html
     },
     'Xoắn Sắc Núi': {
-        image: 'media/patern 3.png',
+        image: 'media/Pattern 1.png',
         subImages: [
-            'media/patern 3.png',
-            'media/xoan sac nui/DSC05215.jpg',
-            'media/xoan sac nui/DSC05256.jpg',
-            'media/xoan sac nui/DSC05275.jpg',
-            'media/xoan sac nui/DSC05305.jpg',
+            'media/Pattern 1.png',
+            'media/nguyet sac/DSC05198.jpg',
+            'media/nguyet sac/DSC05252.jpg',
+            'media/nguyet sac/DSC05281.jpg',
+            'media/nguyet sac/DSC05311.jpg',
         ],
         price: 129000,
     }

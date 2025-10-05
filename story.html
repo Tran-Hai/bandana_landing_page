@@ -7,8 +7,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Thêm font Crimson Pro cho nội dung câu chuyện -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Thêm thư viện Font Awesome cho icon Giỏ hàng -->
@@ -30,9 +28,8 @@
                         'block-green': '#50725C', // Xanh rêu đậm
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        // Định nghĩa font mới cho các đoạn văn bản câu chuyện
-                        'serif-story': ['Crimson Pro', 'serif'], 
+                        sans: ['Crimson Pro', 'serif'],
+                        title: ['UTM Impact', 'sans-serif'],
                     },
                 }
             }
@@ -40,6 +37,17 @@
     </script>
 
     <style>
+        /* QUAN TRỌNG: Bạn cần cung cấp file font UTM Impact và đặt vào thư mục dự án */
+        @font-face {
+            font-family: 'UTM Impact';
+            /* Thay thế 'path/to/font/' bằng đường dẫn thực tế đến file font của bạn */
+            src: url('path/to/font/UTM-Impact.woff2') format('woff2'),
+                 url('path/to/font/UTM-Impact.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         .story-section {
             /* Đã hoàn nguyên: Loại bỏ box-shadow, thêm lại border-bottom */
             padding: 4rem 0;
@@ -53,7 +61,7 @@
         }
         /* ĐIỀU CHỈNH KÍCH THƯỚC LOGO TÙY CHỈNH BẰNG CSS */
         .brand-logo {
-            height: 48px; 
+            height: 90px; 
             width: auto;
             /* Dùng margin âm để logo nhô ra mà không làm thay đổi chiều cao Header */
             margin-top: -0.5rem; /* Tùy chỉnh để nhô ra trên mobile */
@@ -103,7 +111,7 @@
                 
                 <!-- Cột Ảnh: Đã hoàn nguyên bg-neutral -->
                 <div class="md:order-1 order-2 bg-neutral p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.01]">
-                    <img src="media/Pattern 1.png" 
+                    <img src="media/patern 3.png" 
                          alt="Khăn Nguyệt Sắc" 
                          class="w-full aspect-square object-cover rounded-xl border-4 border-primary/30"
                          onerror="this.src='https://placehold.co/800x800/1E2A4F/FFFFFF?text=Nguyệt+Sắc'" />
@@ -111,9 +119,9 @@
                 
                 <!-- Cột Nội Dung -->
                 <div class="md:order-2 order-1 p-4">
-                    <h3 class="text-4xl font-bold text-secondary mb-4">01. NGUYỆT SẮC</h3>
+                    <h3 class="text-4xl font-title text-secondary mb-4 uppercase">01. Nguyệt Sắc</h3>
                     <!-- Đã thêm class font-serif-story và text-justify -->
-                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 font-serif-story text-justify">
+                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 text-justify">
                         <span class="block">
                             Trong ký ức của người Dao Tiền, mỗi mảnh vải chàm không chỉ là vật dụng đời thường, mà là cuốn sách thiêng khắc ghi linh hồn núi rừng. Trên nền vải xanh thẳm, những họa tiết đồng xu và hạt bí không đơn thuần là hoa văn trang trí đó là ngôn ngữ của tổ tiên, là lời nhắn gửi vượt thời gian.
                         </span>
@@ -137,9 +145,9 @@
                 
                 <!-- Cột Nội Dung (Đảo vị trí) -->
                 <div class="md:order-1 order-1 p-4">
-                    <h3 class="text-4xl font-bold text-secondary mb-4">02. CÁNH ÉN MÙA XUÂN</h3>
+                    <h3 class="text-4xl font-title text-secondary mb-4 uppercase">02. CÁNH ÉN MÙA XUÂN</h3>
                     <!-- Đã thêm class font-serif-story và text-justify -->
-                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 font-serif-story text-justify">
+                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 text-justify">
                         <span class="block">
                             Ngày xưa, ở miền núi Tây Bắc, có một cô gái Thái xinh đẹp tên là Ban. Nàng đem lòng yêu Khum - chàng trai nghèo nhưng hiền lành, thật thà. Tình yêu của họ giản dị mà sâu đậm, như dòng suối mát trong rừng. Thế nhưng, cha của Ban vì tham giàu sang đã hứa gả nàng cho một lão phú hộ trong bản. 
                         </span>
@@ -165,7 +173,7 @@
                 
                 <!-- Cột Ảnh: Đã hoàn nguyên bg-neutral -->
                 <div class="md:order-1 order-2 bg-neutral p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.01]">
-                    <img src="media/patern 3.png" 
+                    <img src="media/Pattern 1.png" 
                          alt="Khăn Xoắn Sắc Núi" 
                          class="w-full aspect-square object-cover rounded-xl border-4 border-primary/30"
                          onerror="this.src='https://placehold.co/800x800/50725C/FFFFFF?text=Xoắn+Sắc+Núi'" />
@@ -173,9 +181,9 @@
                 
                 <!-- Cột Nội Dung -->
                 <div class="md:order-2 order-1 p-4">
-                    <h3 class="text-4xl font-bold text-secondary mb-4">03. XOẮN SẮC NÚI</h3>
+                    <h3 class="text-4xl font-title text-secondary mb-4 uppercase">03. Xoắn Sắc Núi</h3>
                     <!-- Đã thêm class font-serif-story và text-justify -->
-                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 font-serif-story text-justify">
+                    <p class="text-lg leading-relaxed text-dark-text/90 space-y-4 text-justify">
                         <span class="block">
                             Trong tâm thức người H’Mông, mỗi tấm thổ cẩm là một bản sử thi không lời. Vòng xoắn ốc kể về dòng chảy bất tận của sự sống, hình vuông gợi mặt đất vững chãi nơi bản làng neo lại giữa đại ngàn, còn những tam giác nhọn vươn lên như dãy núi vừa che chở vừa thử thách con người. Không có chữ viết, phụ nữ H’Mông đã gửi trí nhớ và linh hồn cả dân tộc vào từng đường dệt, để hoa văn không chỉ là trang trí mà còn là lời thề với núi rừng, là bản đồ tâm linh kết nối con người cùng vũ trụ. Mỗi họa tiết trở thành một ngôn ngữ biểu tượng, vừa phản ánh đời sống kinh tế, văn hóa, xã hội, vừa mở ra chiều sâu của niềm tin và thế giới tâm linh độc đáo. 
                         </span>
