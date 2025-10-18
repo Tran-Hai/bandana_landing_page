@@ -44,15 +44,15 @@ const productStories = {
 // Dữ liệu TĨNH cho phần "Về Chúng Tớ"
 const aboutContent = [
     {
-        title: 'Bản Sắc Việt Từ Màu Sắc',
+        title: 'Bản sắc việt từ màu sắc',
         content: 'Mỗi vùng miền, mỗi dân tộc Việt Nam đều mang trong mình một bảng màu, một hoa văn đặc trưng, tựa như dấu vân tay của văn hóa. Sắc màu ấy không chỉ nằm trên thổ cẩm Tây Bắc, trên tà áo dài Hà Đông hay những mái ngói rêu phong của Hội An, mà còn sống động trong từng nếp sinh hoạt, trong ký ức của mỗi con người. <b>"Sắc"</b> được khai sinh từ khát vọng gìn giữ và lan tỏa bản sắc văn hóa Việt theo một cách mới mẻ, gần gũi và hợp thời.'
     },
     {
-        title: 'Tác Phẩm Văn Hóa Thu Nhỏ',
+        title: 'Tác phẩm văn hóa thu nhỏ',
         content: 'Với chúng tớ, một chiếc khăn bandana không đơn thuần là phụ kiện thời trang, mà là một tác phẩm văn hóa thu nhỏ. Ở đó, người trẻ có thể vừa “mặc” vừa “kể” một câu chuyện về vùng đất, con người, và tinh thần Việt Nam. Điểm khác biệt của <b>"Sắc"</b> nằm ở việc không chỉ in hoa văn đẹp mắt, mà còn gắn với ngữ cảnh và câu chuyện văn hóa. Mỗi chiếc khăn được thiết kế như một mảnh ghép mang tính biểu tượng, vừa có giá trị sử dụng trong đời sống thường ngày, vừa mang giá trị tinh thần như một tấm hộ chiếu văn hóa mà ai cũng có thể mang theo.'
     },
     {
-        title: 'Thời Trang Kể Chuyện (Storytelling Fashion)',
+        title: 'Thời trang kể chuyện (Storytelling Fashion)',
         content: 'Trong bối cảnh storytelling fashion (thời trang kể chuyện) đang trở thành xu hướng, người trẻ không còn muốn dừng lại ở “mặc đẹp”, mà muốn “mặc ý nghĩa”, “mặc câu chuyện”. <b>"Sắc"</b> chính là lời đáp cho xu hướng ấy: một thương hiệu giúp họ tìm về văn hóa truyền thống nhưng được thể hiện bằng hình thức hiện đại, tinh tế và sáng tạo. Hơn cả một phụ kiện, <b>"Sắc"</b> là nơi bản sắc dân tộc được thổi hồn, để mỗi bước chân người trẻ đều mang theo một phần câu chuyện Việt Nam.'
     }
 ];
@@ -135,9 +135,11 @@ function renderSubImages() {
     });
 }
 
-function renderAboutContent() {
+function renderFeatureContent() {
+    const featureContainer = document.getElementById('feature-content');
+    if (!featureContainer) return;
+
     let contentHtml = '';
-    
     aboutContent.forEach((item, index) => {
         contentHtml += `
             <div class="bg-neutral p-6 rounded-xl shadow-lg border-t-4 border-primary transition duration-300 hover:shadow-xl">
@@ -149,7 +151,7 @@ function renderAboutContent() {
             </div>
         `;
     });
-    aboutContentDiv.innerHTML = contentHtml;
+    featureContainer.innerHTML = contentHtml;
 }
 
 // --- LOGIC GIỎ HÀNG ---
@@ -437,6 +439,6 @@ document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
 // GỌI HÀM KHỞI TẠO
 document.addEventListener('DOMContentLoaded', () => {
     renderSubImages();
-    renderAboutContent();
+    renderFeatureContent();
     updateCartCount(); // Cập nhật số lượng ban đầu
 });
