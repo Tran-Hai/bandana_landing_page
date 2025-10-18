@@ -164,20 +164,42 @@
 
         <main id="main-content" class="container mx-auto px-4 py-12">
 
-            <section id="home" class="mb-12">
-                <div class="w-full aspect-video rounded-xl shadow-2xl overflow-hidden border-4 border-primary/50 relative group">
-                    <img src="media/COVER.png" 
-                         alt="Poster Khăn Bandana Bộ Sưu Tập Mới" 
-                         class="w-full h-full object-cover transition duration-500 transform group-hover:scale-105"
-                         onerror="this.src='https://placehold.co/1600x900/A31D1D/ECDCBF?text=POSTER+16:9'" />
-                    
-                    <div class="absolute inset-0 flex flex-col justify-end items-center p-8">
-                        <a href="#products" class="nav-link inline-block bg-secondary text-white font-bold py-3 px-8 rounded-full shadow-xl hover:bg-primary transition duration-300 transform hover:scale-110">
-                            KHÁM PHÁ BỘ SƯU TẬP
-                        </a>
+                <section id="home" class="mb-12">
+                    <div class="w-full aspect-video rounded-xl shadow-2xl overflow-hidden border-4 border-primary/50 relative">
+                        <!-- Carousel -->
+                        <div id="hero-carousel" class="relative h-full w-full">
+                            <div class="carousel-slides h-full w-full relative">
+                                <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700">
+                                    <img src="media/slidingContent/COVER.png" alt="Slide 1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1600x900/A31D1D/ECDCBF?text=Slide+1'" />
+                                </div>
+                                <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700">
+                                    <img src="media/slidingContent/1.PNG" alt="Slide 2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1600x900/ECDCBF/333333?text=Slide+2'" />
+                                </div>
+                                <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700">
+                                    <img src="media/slidingContent/2.PNG" alt="Slide 3" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1600x900/D84040/FFFFFF?text=Slide+3'" />
+                                </div>
+                                <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700">
+                                    <img src="media/slidingContent/3.PNG" alt="Slide 4" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1600x900/50725C/FFFFFF?text=Slide+4'" />
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <button id="carousel-prev" aria-label="Previous slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 hover:bg-white p-2 rounded-full shadow-md">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            <button id="carousel-next" aria-label="Next slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 hover:bg-white p-2 rounded-full shadow-md">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+
+                            <!-- CTA overlay bottom center: always visible above slides -->
+                            <div class="absolute inset-0 flex items-end justify-center p-6 pointer-events-none z-30">
+                                <a href="#products" class="nav-link pointer-events-auto relative z-20 inline-block bg-secondary text-white font-bold py-3 px-8 rounded-full shadow-xl hover:bg-primary transition duration-300">
+                                    KHÁM PHÁ BỘ SƯU TẬP
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
             <section id="products" class="pt-8">
                 <b><h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-10">SẢN PHẨM NỔI BẬT</h2></b>
@@ -283,7 +305,7 @@
             <section id="contact" class="pt-12 mt-12">
                 <div class="bg-primary p-8 rounded-xl shadow-xl text-white text-center">
                     <h2 class="text-3xl font-bold mb-4">LIÊN HỆ</h2>
-                    <p class="mb-4">Bạn có bất kỳ câu hỏi nào? Hãy liên hệ với chúng tớ!</p>
+                    <p class="mb-4">Bạn có bất kỳ câu hỏi nào? Hãy liên hệ với chúng tôi!</p>
                     
                     <p class="font-semibold mb-2">
                         Fanpage: 

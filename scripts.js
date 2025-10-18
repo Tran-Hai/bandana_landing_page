@@ -135,6 +135,48 @@ function renderSubImages() {
     });
 }
 
+// --- HERO CAROUSEL ---
+function initHeroCarousel() {
+    const carousel = document.getElementById('hero-carousel');
+    if (!carousel) return;
+
+    const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    let current = 0;
+    let intervalId = null;
+
+    function show(index) {
+        slides.forEach((s, i) => {
+            s.style.opacity = i === index ? '1' : '0';
+            s.style.zIndex = i === index ? '10' : '1';
+        });
+        current = index;
+    }
+
+    function next() { show((current + 1) % slides.length); }
+    function prev() { show((current - 1 + slides.length) % slides.length); }
+
+    function startAutoplay() {
+        stopAutoplay();
+        intervalId = setInterval(next, 5000);
+    }
+
+    function stopAutoplay() {
+        if (intervalId) { clearInterval(intervalId); intervalId = null; }
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+
+    // init
+    show(0);
+    startAutoplay();
+}
+
 function renderFeatureContent() {
     const featureContainer = document.getElementById('feature-content');
     if (!featureContainer) return;
@@ -440,5 +482,6 @@ document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
 document.addEventListener('DOMContentLoaded', () => {
     renderSubImages();
     renderFeatureContent();
+    initHeroCarousel();
     updateCartCount(); // Cập nhật số lượng ban đầu
 });
