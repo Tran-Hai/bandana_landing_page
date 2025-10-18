@@ -49,7 +49,7 @@ const aboutContent = [
     },
     {
         title: 'Tác phẩm văn hóa thu nhỏ',
-        content: 'Với chúng tớ, một chiếc khăn bandana không đơn thuần là phụ kiện thời trang, mà là một tác phẩm văn hóa thu nhỏ. Ở đó, người trẻ có thể vừa “mặc” vừa “kể” một câu chuyện về vùng đất, con người, và tinh thần Việt Nam. Điểm khác biệt của <b>"Sắc"</b> nằm ở việc không chỉ in hoa văn đẹp mắt, mà còn gắn với ngữ cảnh và câu chuyện văn hóa. Mỗi chiếc khăn được thiết kế như một mảnh ghép mang tính biểu tượng, vừa có giá trị sử dụng trong đời sống thường ngày, vừa mang giá trị tinh thần như một tấm hộ chiếu văn hóa mà ai cũng có thể mang theo.'
+        content: 'Với chúng tôi, một chiếc khăn bandana không đơn thuần là phụ kiện thời trang, mà là một tác phẩm văn hóa thu nhỏ. Ở đó, người trẻ có thể vừa “mặc” vừa “kể” một câu chuyện về vùng đất, con người, và tinh thần Việt Nam. Điểm khác biệt của <b>"Sắc"</b> nằm ở việc không chỉ in hoa văn đẹp mắt, mà còn gắn với ngữ cảnh và câu chuyện văn hóa. Mỗi chiếc khăn được thiết kế như một mảnh ghép mang tính biểu tượng, vừa có giá trị sử dụng trong đời sống thường ngày, vừa mang giá trị tinh thần như một tấm hộ chiếu văn hóa mà ai cũng có thể mang theo.'
     },
     {
         title: 'Thời trang kể chuyện (Storytelling Fashion)',
@@ -228,7 +228,7 @@ function renderFeatureContent() {
                 <h3 class="text-xl md:text-2xl font-semibold text-secondary mb-4">
                     ${item.title}
                 </h3>
-                <p class="leading-relaxed text-base text-dark-text/90">${item.content}</p>
+                <p class="leading-relaxed text-sm sm:text-base md:text-xl text-dark-text/90">${item.content}</p>
             </div>
         `;
     });
