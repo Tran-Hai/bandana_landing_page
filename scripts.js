@@ -177,6 +177,45 @@ function initHeroCarousel() {
     startAutoplay();
 }
 
+// --- PRELOAD HERO SLIDES PROGRESSIVELY ---
+// Preloads slides after a short delay, one-by-one, to avoid a large initial bandwidth spike.
+function preloadHeroSlides(opts = {}) {
+    const { initialDelay = 1000, interval = 700 } = opts;
+
+    // Respect users who enabled Save-Data
+    const navConn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (navConn && navConn.saveData) {
+        console.log('preloadHeroSlides: save-data enabled — skipping preloads');
+        return;
+    }
+
+    const carousel = document.getElementById('hero-carousel');
+    if (!carousel) return;
+
+    const imgs = Array.from(carousel.querySelectorAll('.carousel-slide img'));
+    if (imgs.length <= 1) return;
+
+    // Start after a short delay so initial rendering isn't impacted
+    setTimeout(() => {
+        imgs.forEach((img, idx) => {
+            if (idx === 0) return; // first image already loaded eagerly
+            // schedule progressive preload
+            setTimeout(() => {
+                try {
+                    const p = new Image();
+                    // use data-src if present (future-proof), else current src
+                    p.src = img.dataset.src || img.src;
+                    p.decode && p.decode().catch(() => {});
+                    p.onload = () => console.log('preloaded hero image:', p.src);
+                } catch (e) {
+                    // ignore
+                    console.warn('preloadHeroSlides error', e);
+                }
+            }, interval * idx);
+        });
+    }, initialDelay);
+}
+
 function renderFeatureContent() {
     const featureContainer = document.getElementById('feature-content');
     if (!featureContainer) return;
@@ -483,5 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSubImages();
     renderFeatureContent();
     initHeroCarousel();
+    // Warm up remaining hero slides progressively (reduces initial load spike)
+    preloadHeroSlides({ initialDelay: 1000, interval: 700 });
     updateCartCount(); // Cập nhật số lượng ban đầu
 });
