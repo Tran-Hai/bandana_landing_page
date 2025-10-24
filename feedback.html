@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đánh Giá - Sắc Khăn Lụa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#A31D1D', // Đỏ Maroon đậm - Tiêu đề, Logo
+                        'secondary': '#D84040', // Đỏ nổi bật - CTA, Nút Mua Ngay
+                        'background': '#F8F2DE', // Kem Rất Nhạt - Nền chung
+                        'neutral': '#ECDCBF', // Kem/Beige - Nền card, input
+                        'dark-text': '#333333', // Màu chữ đậm
+                    },
+                    fontFamily: {
+                        sans: ['Crimson Pro', 'serif'],
+                        title: ['Crimson Pro', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'UTM Impact';
+            /* Thay thế 'path/to/font/' bằng đường dẫn thực tế đến file font của bạn */
+            src: url('path/to/font/UTM-Impact.woff2') format('woff2'),
+                 url('path/to/font/UTM-Impact.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        /* Force Crimson Pro for all text as requested */
+        body, input, textarea, button, select {
+            font-family: 'Crimson Pro', serif !important;
+        }
+    </style>
+</head>
+<body class="font-sans text-dark-text" style="background-color: #F8F2DE;">
+    
+    <!-- Header giống index.html -->
+    <header class="sticky top-0 bg-neutral shadow-md z-50">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="index.html" class="block hover:opacity-90 transition duration-300">
+                <img src="media/AVT ĐỎ ĐÔ.png" alt="Logo" class="h-20 w-auto rounded-sm">
+            </a>
+            <nav class="hidden md:flex space-x-6 text-lg font-medium">
+                <a href="index.html#home" class="nav-link hover:text-secondary transition duration-300"><b>TRANG CHỦ</b></a>
+                <a href="index.html#products" class="nav-link hover:text-secondary transition duration-300"><b>SẢN PHẨM</b></a>
+                <a href="feedback.html" class="nav-link font-bold text-primary hover:text-secondary transition duration-300"><b>FEEDBACK</b></a>
+                <a href="story.html" class="nav-link hover:text-secondary transition duration-300"><b>CÂU CHUYỆN</b></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 mt-16">
+    <section id="feedback" class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
+
+        </h2>
+        
+<div class="max-w-3xl mx-auto bg-neutral/90 p-8 rounded-xl shadow-xl transform transition hover:shadow-2xl backdrop-blur-sm">
+            <form id="feedback-form" class="space-y-8">
+                <!-- Section I: Thông tin -->
+                <div class="border-b-2 border-secondary/30 pb-6 mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-4 flex items-center">
+                        <span class="bg-secondary text-neutral w-8 h-8 rounded-full flex items-center justify-center mr-3">I</span>
+                        THÔNG TIN KHÁCH HÀNG
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-lg font-medium text-primary">
+                                <i class="fas fa-user text-secondary mr-2"></i>
+                                Họ và tên
+                            </label>
+            <input type="text" name="customerName" placeholder="Nhập họ tên" 
+                   class="w-full px-4 py-3 border-2 border-primary/20 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent bg-neutral/80 transition-all">
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="block text-lg font-medium text-primary">
+                                <i class="fas fa-phone text-secondary mr-2"></i>
+                                Số điện thoại
+                            </label>
+                            <input type="tel" name="phone" placeholder="Nhập số điện thoại"
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background/90 transition-all">
+                        </div>
+                        
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="block text-lg font-medium text-primary">
+                                <i class="fas fa-calendar-day text-secondary mr-2"></i>
+                                Ngày mua hàng
+                            </label>
+                            <input type="date" name="purchaseDate"
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent bg-background/90 transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section II: Đánh giá sản phẩm -->
+                <div class="border-b-2 border-secondary/30 pb-6 mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-4 flex items-center">
+                        <span class="bg-secondary text-neutral w-8 h-8 rounded-full flex items-center justify-center mr-3">II</span>
+                        ĐÁNH GIÁ CHẤT LƯỢNG SẢN PHẨM
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Rating: Chất liệu vải -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">1. Chất liệu vải</label>
+                            <div class="star-rating">
+                                <input type="radio" id="fabric-5" name="fabric" value="5"><label for="fabric-5">★</label>
+                                <input type="radio" id="fabric-4" name="fabric" value="4"><label for="fabric-4">★</label>
+                                <input type="radio" id="fabric-3" name="fabric" value="3"><label for="fabric-3">★</label>
+                                <input type="radio" id="fabric-2" name="fabric" value="2"><label for="fabric-2">★</label>
+                                <input type="radio" id="fabric-1" name="fabric" value="1"><label for="fabric-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating: Chất lượng in -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">2. Chất lượng in</label>
+                            <div class="star-rating">
+                                <input type="radio" id="printing-5" name="printing" value="5"><label for="printing-5">★</label>
+                                <input type="radio" id="printing-4" name="printing" value="4"><label for="printing-4">★</label>
+                                <input type="radio" id="printing-3" name="printing" value="3"><label for="printing-3">★</label>
+                                <input type="radio" id="printing-2" name="printing" value="2"><label for="printing-2">★</label>
+                                <input type="radio" id="printing-1" name="printing" value="1"><label for="printing-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating: Thẩm mỹ của hoạ tiết -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">3. Thẩm mỹ của hoạ tiết</label>
+                            <div class="star-rating">
+                                <input type="radio" id="aesthetics-5" name="aesthetics" value="5"><label for="aesthetics-5">★</label>
+                                <input type="radio" id="aesthetics-4" name="aesthetics" value="4"><label for="aesthetics-4">★</label>
+                                <input type="radio" id="aesthetics-3" name="aesthetics" value="3"><label for="aesthetics-3">★</label>
+                                <input type="radio" id="aesthetics-2" name="aesthetics" value="2"><label for="aesthetics-2">★</label>
+                                <input type="radio" id="aesthetics-1" name="aesthetics" value="1"><label for="aesthetics-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating: Thẻ câu chuyện -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">4. Thẻ câu chuyện</label>
+                            <div class="star-rating">
+                                <input type="radio" id="story-card-5" name="storyCard" value="5"><label for="story-card-5">★</label>
+                                <input type="radio" id="story-card-4" name="storyCard" value="4"><label for="story-card-4">★</label>
+                                <input type="radio" id="story-card-3" name="storyCard" value="3"><label for="story-card-3">★</label>
+                                <input type="radio" id="story-card-2" name="storyCard" value="2"><label for="story-card-2">★</label>
+                                <input type="radio" id="story-card-1" name="storyCard" value="1"><label for="story-card-1">★</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section III: Đánh giá dịch vụ -->
+                <div class="border-b-2 border-secondary/30 pb-6 mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-4 flex items-center">
+                        <span class="bg-secondary text-neutral w-8 h-8 rounded-full flex items-center justify-center mr-3">III</span>
+                        ĐÁNH GIÁ CHẤT LƯỢNG DỊCH VỤ
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Rating: Đóng gói sản phẩm -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">1. Đóng gói sản phẩm</label>
+                            <div class="star-rating">
+                                <input type="radio" id="packaging-5" name="packaging" value="5"><label for="packaging-5">★</label>
+                                <input type="radio" id="packaging-4" name="packaging" value="4"><label for="packaging-4">★</label>
+                                <input type="radio" id="packaging-3" name="packaging" value="3"><label for="packaging-3">★</label>
+                                <input type="radio" id="packaging-2" name="packaging" value="2"><label for="packaging-2">★</label>
+                                <input type="radio" id="packaging-1" name="packaging" value="1"><label for="packaging-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating: Tư vấn -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">2. Tư vấn</label>
+                            <div class="star-rating">
+                                <input type="radio" id="consultation-5" name="consultation" value="5"><label for="consultation-5">★</label>
+                                <input type="radio" id="consultation-4" name="consultation" value="4"><label for="consultation-4">★</label>
+                                <input type="radio" id="consultation-3" name="consultation" value="3"><label for="consultation-3">★</label>
+                                <input type="radio" id="consultation-2" name="consultation" value="2"><label for="consultation-2">★</label>
+                                <input type="radio" id="consultation-1" name="consultation" value="1"><label for="consultation-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating: Quy trình mua hàng và thanh toán -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">3. Quy trình mua hàng và thanh toán</label>
+                            <div class="star-rating">
+                                <input type="radio" id="process-5" name="process" value="5"><label for="process-5">★</label>
+                                <input type="radio" id="process-4" name="process" value="4"><label for="process-4">★</label>
+                                <input type="radio" id="process-3" name="process" value="3"><label for="process-3">★</label>
+                                <input type="radio" id="process-2" name="process" value="2"><label for="process-2">★</label>
+                                <input type="radio" id="process-1" name="process" value="1"><label for="process-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Rating: Chính sách sau mua hàng -->
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-2">4. Chính sách sau mua hàng</label>
+                            <div class="star-rating">
+                                <input type="radio" id="policy-5" name="policy" value="5"><label for="policy-5">★</label>
+                                <input type="radio" id="policy-4" name="policy" value="4"><label for="policy-4">★</label>
+                                <input type="radio" id="policy-3" name="policy" value="3"><label for="policy-3">★</label>
+                                <input type="radio" id="policy-2" name="policy" value="2"><label for="policy-2">★</label>
+                                <input type="radio" id="policy-1" name="policy" value="1"><label for="policy-1">★</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section IV: Đánh giá chung -->
+                <div class="pb-6">
+                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-4 flex items-center">
+                        <span class="bg-secondary text-neutral w-8 h-8 rounded-full flex items-center justify-center mr-3">IV</span>
+                        ĐÁNH GIÁ CHUNG
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-3">Điều gì ở sản phẩm khiến bạn hài lòng nhất?</label>
+                            <textarea rows="3" name="satisfaction" placeholder="Hãy chia sẻ với chúng tôi..."
+                                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-primary 
+                                             focus:border-transparent bg-background/90 transition-all"></textarea>
+                        </div>
+
+                        <div class="bg-background/20 p-4 rounded-xl">
+                            <label class="block text-lg font-medium text-primary mb-3">Bạn có sẵn lòng giới thiệu sản phẩm khăn bandana mang dấu ấn văn hóa này cho bạn bè/ người thân của bạn?</label>
+                            <div class="flex space-x-4">
+                                <label class="recommend-option">
+                                                                <input type="radio" name="recommend" value="Có" class="peer hidden">
+                                                                <span class="block px-6 py-3 rounded-full bg-background border-2 border-secondary 
+                                                                           text-secondary peer-checked:bg-secondary peer-checked:text-neutral 
+                                                                           cursor-pointer transition-all">
+                                                                    <i class="fas fa-thumbs-up mr-2"></i>Có
+                                                                </span>                                </label>
+                                <label class="recommend-option">
+                                    <input type="radio" name="recommend" value="Không" class="peer hidden">
+                                    <span class="block px-6 py-3 rounded-full bg-background border-2 border-secondary 
+                                               text-secondary peer-checked:bg-secondary peer-checked:text-neutral 
+                                               cursor-pointer transition-all">
+                                        <i class="fas fa-thumbs-down mr-2"></i>Không
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="text-center pt-6">
+                    <button type="submit" 
+                            class="bg-transparent text-[#D84040] px-8 py-4 rounded-full text-lg font-bold 
+                                   hover:bg-[#D84040] hover:text-white transform transition-all hover:scale-105 shadow-lg
+                                   flex items-center justify-center mx-auto border-2 border-[#D84040] hover:border-transparent">
+                        <i class="fas fa-paper-plane mr-3"></i>
+                        GỬI ĐÁNH GIÁ
+                    </button>
+                    
+                    <p class="mt-6 text-dark-text/70 italic">
+                        <i class="fas fa-heart text-secondary mr-2"></i>
+                        Cảm ơn bạn đã trải nghiệm sản phẩm của “Sắc”. Rất mong được gặp lại bạn ở những sản phẩm tới!
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer giống index.html -->
+    <!-- <footer class="bg-neutral mt-24 py-8">
+        <div class="container mx-auto px-4 text-center text-dark-text/80">
+            <p class="mb-4">© 2024 Sắc - Khăn lụa kể chuyện Việt</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="hover:text-secondary transition duration-300">
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="#" class="hover:text-secondary transition duration-300">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="hover:text-secondary transition duration-300">
+                    <i class="fab fa-tiktok text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer> -->
+
+    <script src="feedback_script.js"></script>
+</body>

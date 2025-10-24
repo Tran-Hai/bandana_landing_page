@@ -20,3 +20,33 @@ html {
 .sub-image-gallery::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
+
+/* Star Rating */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2.5rem;
+  color: #d1d5db; /* gray-300 */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input[type="radio"]:checked ~ label {
+  color: #f59e0b; /* amber-500 */
+}
+
+/* Recommend Option Hover */
+.recommend-option:hover span {
+  background-color: #D84040;
+  color: white;
+}
