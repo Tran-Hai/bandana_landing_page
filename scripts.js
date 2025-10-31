@@ -13,7 +13,10 @@ const productStories = {
             'media/xoan sac nui/DSC05275.jpg',
             'media/xoan sac nui/DSC05305.jpg',
         ],
-        price: 129000,
+        prices: {
+            '70x70': 129000,
+            '50x50': 99000
+        },
         // Story đã được chuyển sang story.html
     },
     'Cánh Én Mùa Xuân': {
@@ -25,7 +28,10 @@ const productStories = {
             'media/canh en/DSC05265.jpg',
             'media/canh en/DSC05299.jpg',
         ],
-        price: 129000,
+        prices: {
+            '70x70': 129000,
+            '50x50': 99000
+        },
         // Story đã được chuyển sang story.html
     },
     'Xoắn Sắc Núi': {
@@ -37,7 +43,10 @@ const productStories = {
             'media/nguyet sac/DSC05281.jpg',
             'media/nguyet sac/DSC05311.jpg',
         ],
-        price: 129000,
+        prices: {
+            '70x70': 129000,
+            '50x50': 99000
+        },
     }
 };
 
@@ -245,6 +254,31 @@ function renderFeatureContent() {
 
 // --- LOGIC GIỎ HÀNG ---
 
+// Hàm cập nhật giá khi chọn size
+function updatePrice(productCard) {
+    const productName = productCard.dataset.productName;
+    const priceElement = productCard.querySelector('.text-secondary');
+    const selectedSize = productCard.querySelector('input[name^="size-"]:checked').value;
+    const productData = productStories[productName];
+
+    if (productData && productData.prices && productData.prices[selectedSize]) {
+        const newPrice = productData.prices[selectedSize];
+        priceElement.textContent = formatCurrency(newPrice);
+    }
+}
+
+// Hàm khởi tạo cho các nút chọn size
+function initializeSizeSelectors() {
+    document.querySelectorAll('.product-card').forEach(card => {
+        const sizeRadios = card.querySelectorAll('input[name^="size-"]');
+        sizeRadios.forEach(radio => {
+            radio.addEventListener('change', () => updatePrice(card));
+        });
+        // Cập nhật giá ban đầu
+        updatePrice(card);
+    });
+}
+
 // Hàm cập nhật số lượng trên icon giỏ hàng
 function updateCartCount() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -264,15 +298,22 @@ function saveCart() {
 
 // Hàm thêm sản phẩm vào giỏ hàng
 function addToCart(productName) {
-    const product = cart.find(item => item.name === productName);
+    const productCard = document.querySelector(`[data-product-name="${productName}"]`);
+    const selectedSize = productCard.querySelector('input[name^="size-"]:checked').value;
     const productData = productStories[productName];
+    const price = productData.prices[selectedSize];
+
+    const cartItemIdentifier = `${productName}-${selectedSize}`;
+    const product = cart.find(item => item.id === cartItemIdentifier);
 
     if (product) {
         product.quantity += 1;
     } else {
         cart.push({
+            id: cartItemIdentifier,
             name: productName,
-            price: productData.price,
+            size: selectedSize,
+            price: price,
             image: productData.image,
             quantity: 1
         });
@@ -285,14 +326,14 @@ function addToCart(productName) {
 }
 
 // Hàm thay đổi số lượng
-function changeQuantity(productName, delta) {
-    const product = cart.find(item => item.name === productName);
+function changeQuantity(cartItemId, delta) {
+    const product = cart.find(item => item.id === cartItemId);
     
     if (product) {
         product.quantity += delta;
         if (product.quantity <= 0) {
             // Xóa nếu số lượng bằng 0
-            cart = cart.filter(item => item.name !== productName);
+            cart = cart.filter(item => item.id !== cartItemId);
         }
     }
     saveCart();
@@ -301,8 +342,8 @@ function changeQuantity(productName, delta) {
 }
 
 // Hàm xóa sản phẩm khỏi giỏ
-function removeItem(productName) {
-    cart = cart.filter(item => item.name !== productName);
+function removeItem(cartItemId) {
+    cart = cart.filter(item => item.id !== cartItemId);
     saveCart();
     renderCartItems();
     updateCartCount();
@@ -326,14 +367,14 @@ function renderCartItems() {
                 <div class="flex items-center bg-background p-3 rounded-lg shadow-sm border border-neutral-300">
                     <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md flex-shrink-0 mr-3" onerror="this.src='https://placehold.co/64x64/A31D1D/FFFFFF?text=Sản+Phẩm'">
                     <div class="flex-grow">
-                        <h5 class="text-dark-text font-semibold text-base">${item.name}</h5>
+                        <h5 class="text-dark-text font-semibold text-base">${item.name} (${item.size})</h5>
                         <p class="text-sm text-secondary font-bold">${formatCurrency(item.price)}</p>
                     </div>
                     <div class="flex items-center space-x-2 flex-shrink-0">
-                        <button onclick="changeQuantity('${item.name}', -1)" class="w-6 h-6 bg-primary text-white rounded-full text-sm hover:bg-secondary transition duration-200 disabled:opacity-50" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                        <button onclick="changeQuantity('${item.id}', -1)" class="w-6 h-6 bg-primary text-white rounded-full text-sm hover:bg-secondary transition duration-200 disabled:opacity-50" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
                         <span class="font-bold text-dark-text w-4 text-center">${item.quantity}</span>
-                        <button onclick="changeQuantity('${item.name}', 1)" class="w-6 h-6 bg-primary text-white rounded-full text-sm hover:bg-secondary transition duration-200">+</button>
-                        <button onclick="removeItem('${item.name}')" class="text-gray-400 hover:text-red-500 transition duration-200 ml-2">
+                        <button onclick="changeQuantity('${item.id}', 1)" class="w-6 h-6 bg-primary text-white rounded-full text-sm hover:bg-secondary transition duration-200">+</button>
+                        <button onclick="removeItem('${item.id}')" class="text-gray-400 hover:text-red-500 transition duration-200 ml-2">
                             <i class="fas fa-trash-alt text-lg"></i>
                         </button>
                     </div>
@@ -376,7 +417,8 @@ function showCartMessage(text, isSuccess) {
     cartMessageBox.classList.remove('hidden', 'bg-green-500', 'bg-red-500');
     if (isSuccess) {
         cartMessageBox.classList.add('bg-green-500');
-    } else {
+    }
+    else {
         cartMessageBox.classList.add('bg-red-500');
     }
 }
@@ -399,7 +441,7 @@ function showQrCodeModal() {
             const itemElement = document.createElement('div');
             itemElement.classList.add('flex', 'justify-between', 'text-sm', 'text-dark-text');
             itemElement.innerHTML = `
-                <span>${item.name}</span>
+                <span>${item.name} (${item.size})</span>
                 <span>x${item.quantity}</span>
             `;
             qrCartItemsContainer.appendChild(itemElement);
@@ -447,7 +489,7 @@ async function submitOrderData() {
         cart.forEach(item => {
             const itemData = {
                 thoiGian: encodeURIComponent(timeStamp),
-                tenSanPham: encodeURIComponent(item.name),
+                tenSanPham: encodeURIComponent(`${item.name} (${item.size})`),
                 soLuong: encodeURIComponent(item.quantity),
                 tenKhach: encodeURIComponent(customerName),
                 sdt: encodeURIComponent(sdt),
@@ -567,6 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSubImages();
     renderFeatureContent();
     initHeroCarousel();
+    initializeSizeSelectors();
     // Warm up remaining hero slides progressively (reduces initial load spike)
     preloadHeroSlides({ initialDelay: 1000, interval: 700 });
     updateCartCount(); // Cập nhật số lượng ban đầu
