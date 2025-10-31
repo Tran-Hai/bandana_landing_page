@@ -123,25 +123,11 @@
             </button>
         </div>
 
-        <!-- Danh sách sản phẩm trong giỏ hàng -->
-        <div id="cart-items-container" class="flex-grow overflow-y-auto pr-2 space-y-4">
-            <!-- Nội dung giỏ hàng được render bằng JS -->
-        </div>
-
-        <div id="cart-summary" class="border-t border-primary/20 pt-4 mt-4">
-            <div id="cart-message" class="text-center text-dark-text/70 italic hidden mb-4">
-                Giỏ hàng trống. Hãy chọn sản phẩm!
-            </div>
-            <p class="text-xl font-bold text-dark-text mb-4 flex justify-between items-center">
-                <span id="total-summary-label">
-                </span>
-                <span id="total-price" class="text-secondary">0 VNĐ</span>
-            </p>
-        </div>
-
-        <!-- Form thông tin khách hàng -->
-        <form id="cart-order-form" class="space-y-3 pt-4 border-t border-primary/20 mt-4">
+        <form id="cart-order-form" class="flex flex-col flex-grow space-y-3 pt-4 border-t border-primary/20 mt-4">
             <h4 class="text-lg font-semibold text-primary mb-2">Thông tin giao hàng</h4>
+
+            <!-- Cart items are now displayed inside the form -->
+            <div id="cart-items-container" class="flex-grow overflow-y-auto pr-2 space-y-4 mb-4 max-h-60"></div>
             
             <!-- Tên trường (name attribute) đã được kiểm tra lại lần cuối -->
             <input type="text" id="customer-name" name="tenKhach" required placeholder="Tên của bạn *" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text">
@@ -151,6 +137,32 @@
             <textarea id="customer-address" name="diaChi" rows="2" required placeholder="Địa chỉ nhận hàng *" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text"></textarea>
 
             <textarea id="customer-notes" name="ghiChu" rows="1" placeholder="Ghi chú (Tùy chọn)" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary bg-background/80 text-dark-text"></textarea>
+
+            <!-- Cart Summary -->
+            <div id="cart-summary" class="border-t border-primary/20 pt-4 mt-4">
+                <div id="cart-message" class="text-center text-dark-text/70 italic hidden mb-4">
+                    Giỏ hàng trống. Hãy chọn sản phẩm!
+                </div>
+                <p class="text-xl font-bold text-dark-text mb-4 flex justify-between items-center">
+                    <span id="total-summary-label"></span>
+                    <span id="total-price" class="text-secondary">0 VNĐ</span>
+                </p>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div class="mt-4">
+                <h4 class="text-lg font-semibold text-primary mb-2">Phương thức thanh toán</h4>
+                <div class="space-y-2">
+                    <label class="flex items-center p-3 rounded-lg bg-background/80 border border-gray-300 cursor-pointer hover:border-primary">
+                        <input type="radio" name="paymentMethod" value="cod" class="form-radio text-primary focus:ring-primary" checked>
+                        <span class="ml-3 text-dark-text">Thanh toán khi nhận hàng (COD)</span>
+                    </label>
+                    <label class="flex items-center p-3 rounded-lg bg-background/80 border border-gray-300 cursor-pointer hover:border-primary">
+                        <input type="radio" name="paymentMethod" value="online" class="form-radio text-primary focus:ring-primary">
+                        <span class="ml-3 text-dark-text">Thanh toán online (QR Code)</span>
+                    </label>
+                </div>
+            </div>
             
             <button type="submit" id="submit-cart-button" class="w-full bg-secondary text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-primary transition duration-300 mt-4 disabled:opacity-50" disabled>
                 HOÀN TẤT ĐẶT HÀNG
@@ -164,6 +176,30 @@
             </div>
             <div id="cart-message-box" class="hidden mt-4 p-3 rounded-lg text-sm font-medium text-white text-center"></div>
         </form>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qr-code-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl p-6 sm:p-8 max-w-sm w-full text-center relative">
+            <button id="close-qr-modal-btn" class="absolute top-2 right-2 p-2 text-gray-400 hover:text-gray-600 transition duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-2xl font-bold text-primary mb-4">Quét mã để thanh toán</h3>
+            <p class="text-dark-text/80 mb-4">Sử dụng app ngân hàng hoặc ví điện tử để hoàn tất thanh toán cho đơn hàng của bạn.</p>
+            <div class="p-2 border-2 border-primary/50 rounded-lg inline-block">
+                <img id="qr-code-image" src="media/QR/QR.jpg" alt="Mã QR Thanh toán" class="w-64 h-64 object-contain">
+            </div>
+
+            <!-- Cart Items in Modal -->
+            <div id="qr-cart-items" class="text-left mt-4 space-y-2 max-h-32 overflow-y-auto p-2 border-t border-b border-gray-200"></div>
+
+            <p class="text-lg font-bold text-secondary mt-4" id="qr-total-price">Tổng tiền: 0 VNĐ</p>
+            <p class="text-sm text-dark-text/70 mt-2">Nội dung chuyển khoản: <strong id="qr-payment-code" class="text-primary"></strong></p>
+
+            <button id="confirm-payment-btn" class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-green-700 transition duration-300 mt-6">
+                TÔI ĐÃ THANH TOÁN
+            </button>
+        </div>
     </div>
 
 

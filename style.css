@@ -5,6 +5,7 @@ html {
 /* Style cho sidebar giỏ hàng */
 .side-cart {
     z-index: 9999; 
+    overflow-y: auto;
 }
 .side-cart-overlay {
     z-index: 9998; 

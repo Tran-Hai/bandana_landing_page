@@ -71,6 +71,14 @@ const totalPriceDisplay = document.getElementById('total-price');
 const sideCart = document.getElementById('side-cart');
 const sideCartOverlay = document.getElementById('side-cart-overlay');
 
+const qrCodeModal = document.getElementById('qr-code-modal');
+const closeQrModalBtn = document.getElementById('close-qr-modal-btn');
+const qrCodeImage = document.getElementById('qr-code-image');
+const qrTotalPrice = document.getElementById('qr-total-price');
+const qrPaymentCode = document.getElementById('qr-payment-code');
+const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
+const qrCartItemsContainer = document.getElementById('qr-cart-items');
+
 const aboutContentDiv = document.getElementById('about-content'); 
 
 // --- TRẠNG THÁI GIỎ HÀNG (Sử dụng LocalStorage để giữ lại giỏ hàng khi F5) ---
@@ -362,7 +370,7 @@ function toggleSideCart(forceOpen = false) {
     }
 }
 
-// Hiển thị thông báo (trong sidebar)
+// Hàm hiển thị thông báo (trong sidebar)
 function showCartMessage(text, isSuccess) {
     cartMessageBox.textContent = text;
     cartMessageBox.classList.remove('hidden', 'bg-green-500', 'bg-red-500');
@@ -373,108 +381,145 @@ function showCartMessage(text, isSuccess) {
     }
 }
 
-// Xử lý sự kiện gửi form
-cartOrderForm.addEventListener('submit', async function(event) {
-    event.preventDefault();
+// --- QR CODE MODAL LOGIC ---
+function showQrCodeModal() {
+    if (!qrCodeModal) return;
 
-    if (cart.length === 0) {
-        showCartMessage("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm!", false);
-        return;
+    const totalCartPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const paymentCode = `SAC${Date.now().toString().slice(-6)}`; // Tạo mã thanh toán duy nhất
+
+    // Cập nhật thông tin trên modal
+    qrTotalPrice.textContent = `Tổng tiền: ${formatCurrency(totalCartPrice)}`;
+    qrPaymentCode.textContent = paymentCode;
+    
+    // Render cart items in modal
+    qrCartItemsContainer.innerHTML = ''; // Clear previous items
+    if (cart.length > 0) {
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('flex', 'justify-between', 'text-sm', 'text-dark-text');
+            itemElement.innerHTML = `
+                <span>${item.name}</span>
+                <span>x${item.quantity}</span>
+            `;
+            qrCartItemsContainer.appendChild(itemElement);
+        });
     }
 
-    if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE") {
+    // Lưu mã thanh toán vào data attribute của nút confirm để dùng sau
+    confirmPaymentBtn.dataset.paymentCode = paymentCode;
+
+    qrCodeModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideQrCodeModal() {
+    if (qrCodeModal) {
+        qrCodeModal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+}
+
+// --- HÀM GỬI DỮ LIỆU ĐƠN HÀNG ---
+async function submitOrderData() {
+    if (cart.length === 0) {
+        showCartMessage("Giỏ hàng của bạn đang trống.", false);
+        return;
+    }
+     if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE") {
         showCartMessage("LỖI: Vui lòng thay thế 'YOUR_APPS_SCRIPT_URL_HERE' bằng URL Web App của bạn.", false);
         return;
     }
 
-    // 1. Lấy thông tin khách hàng từ form MỘT LẦN VÀ TRƯỚC VÒNG LẶP
     const formData = new FormData(cartOrderForm);
     const customerName = formData.get('tenKhach');
     const sdt = formData.get('sdt');
     const diaChi = formData.get('diaChi');
     const ghiChu = formData.get('ghiChu') || 'Không có ghi chú';
 
-    // 2. Hiển thị loading và vô hiệu hóa nút submit
     submitCartButton.classList.add('hidden');
     cartLoadingSpinner.classList.remove('hidden');
-    
+
     try {
-        
         const timeStamp = new Date().toLocaleString('vi-VN');
-        
         const fetchPromises = [];
 
-        // 3. Lặp qua giỏ hàng và tạo từng request riêng lẻ cho mỗi sản phẩm (mỗi dòng trong sheet)
         cart.forEach(item => {
-            
-            // CẤU TRÚC DỮ LIỆU ĐÃ ĐƯỢC ĐIỀU CHỈNH LẠI
             const itemData = {
-                thoiGian: encodeURIComponent(timeStamp),            // 1. THỜI GIAN (A)
-                tenSanPham: encodeURIComponent(item.name),          // 2. SẢN PHẨM (B)
-                soLuong: encodeURIComponent(item.quantity),         // 3. SỐ LƯỢNG (C)
-                tenKhach: encodeURIComponent(customerName),         // 4. TÊN (D)
-                sdt: encodeURIComponent(sdt),                       // 5. SĐT (E)
-                diaChi: encodeURIComponent(diaChi),                 // 6. ĐỊA CHỈ (F)
-                ghiChu: encodeURIComponent(ghiChu)                  // 7. GHI CHÚ (G)
+                thoiGian: encodeURIComponent(timeStamp),
+                tenSanPham: encodeURIComponent(item.name),
+                soLuong: encodeURIComponent(item.quantity),
+                tenKhach: encodeURIComponent(customerName),
+                sdt: encodeURIComponent(sdt),
+                diaChi: encodeURIComponent(diaChi),
+                ghiChu: encodeURIComponent(ghiChu)
             };
             
-            // 4. Chuyển đổi đối tượng dữ liệu đã được mã hóa thành chuỗi query string
             const body = Object.keys(itemData)
                 .map(key => key + '=' + itemData[key])
                 .join('&');
             
-            // 5. Tạo fetch promise cho mỗi mặt hàng
             const fetchPromise = fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded' 
-                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: body,
                 mode: 'cors'
             }).then(response => {
-                // Kiểm tra phản hồi HTTP trước
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.json();
             });
-
             fetchPromises.push(fetchPromise);
         });
 
-        // 6. Chờ tất cả các request hoàn thành
         const results = await Promise.all(fetchPromises);
-        
-        // Kiểm tra xem tất cả các request có thành công không
         const allSuccess = results.every(result => result && result.success);
 
         if (allSuccess) {
-            showCartMessage(`Đơn hàng (${cart.length} loại sản phẩm) đã được ghi nhận thành công. Cảm ơn bạn!`, true);
-            
-            // Xóa giỏ hàng và reset form sau khi đặt hàng thành công
+            hideQrCodeModal();
+            showCartMessage(`Đơn hàng đã được ghi nhận thành công. Cảm ơn bạn!`, true);
             cart = [];
             saveCart();
             cartOrderForm.reset();
             renderCartItems();
-
-            // Tự động đóng sidebar sau 3 giây
-            setTimeout(() => toggleSideCart(false), 3000); 
+            setTimeout(() => toggleSideCart(false), 3000);
         } else {
-            // Xử lý nếu có ít nhất một request thất bại
             console.error("Lỗi khi gửi một hoặc nhiều sản phẩm:", results);
-            showCartMessage("Đã xảy ra lỗi khi đặt hàng. Vui lòng thử lại sau.", false);
+            showCartMessage("Đã xảy ra lỗi khi đặt hàng. Vui lòng thử lại.", false);
         }
 
     } catch (error) {
-        // Lỗi kết nối hoặc lỗi HTTP
         console.error("Lỗi kết nối hoặc xử lý:", error);
-        showCartMessage("Không thể kết nối đến máy chủ hoặc lỗi xử lý dữ liệu. Vui lòng kiểm tra console log.", false);
+        showCartMessage("Không thể kết nối đến máy chủ. Vui lòng thử lại.", false);
     } finally {
-        // Ẩn loading và khôi phục nút submit
         cartLoadingSpinner.classList.add('hidden');
         submitCartButton.classList.remove('hidden');
     }
+}
+
+
+// Xử lý sự kiện gửi form
+cartOrderForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(cartOrderForm);
+    const paymentMethod = formData.get('paymentMethod');
+
+    if (paymentMethod === 'online') {
+        showQrCodeModal();
+    } else {
+        // Mặc định là 'cod'
+        submitOrderData();
+    }
 });
+
+// Nút "Tôi đã thanh toán" trên QR Modal
+confirmPaymentBtn.addEventListener('click', () => {
+    submitOrderData();
+});
+
+// Nút đóng QR Modal
+closeQrModalBtn.addEventListener('click', hideQrCodeModal);
+
 
 // --- XỬ LÝ MOBILE SIDEBAR ---
 const mobileMenu = document.getElementById('mobile-menu');
