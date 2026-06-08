@@ -245,123 +245,266 @@
                 </section>
 
             <section id="products" class="pt-8">
-                <b><h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-10">SẢN PHẨM NỔI BẬT</h2></b>
+                <div class="text-center mb-12">
+                    <p class="text-primary font-semibold text-lg mb-2 tracking-wide">BST ĐỘC QUYỀN</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 relative inline-block">
+                        SẢN PHẨM NỔI BẬT
+                        <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-full"></span>
+                    </h2>
+                </div>
                 
-                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                    <div data-product-id="3" data-product-name="Xoắn Sắc Núi" data-product-price="129000" class="product-card bg-neutral p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+                    <!-- Product Card 3: Xoắn Sắc Núi -->
+                    <div data-product-id="3" data-product-name="Xoắn Sắc Núi" data-product-price="129000" class="product-card group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col h-full overflow-hidden border border-neutral-200">
                         
-                        <div class="main-image-container">
-                            <img id="main-image-3" src="media/Pattern 1.png" alt="Khăn Xoắn Sắc Núi" class="w-full aspect-square object-cover rounded-lg mb-4 border-2 border-primary/30"
+                        <!-- Image Container with Badges -->
+                        <div class="main-image-container relative overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
+                            <!-- Badge -->
+                            <div class="absolute top-3 left-3 z-20">
+                                <span class="bg-gradient-to-r from-secondary to-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
+                                    <i class="fas fa-fire mr-1"></i> Best Seller
+                                </span>
+                            </div>
+                            
+                            <!-- Wishlist Button -->
+                            <button class="wishlist-btn absolute top-3 right-3 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-400 hover:text-red-500 transition-all duration-300 transform hover:scale-110" onclick="toggleWishlist(this)">
+                                <i class="far fa-heart text-lg"></i>
+                            </button>
+                            
+                            <!-- Main Image -->
+                            <img id="main-image-3" src="media/Pattern 1.png" alt="Khăn Xoắn Sắc Núi" 
+                                 class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
                                  onerror="this.src='https://placehold.co/800x800/ECDCBF/333333?text=Khăn+3'" />
-                        </div>
-
-                        <div data-target-id="3" class="mt-2 mb-4 flex space-x-2 overflow-x-auto pb-2 sub-image-gallery">
-                            <p class="text-xs text-gray-500 italic">Đang tải ảnh phụ...</p>
-                        </div>
-
-                        <div class="mt-4">
-                            <p class="text-sm font-semibold text-dark-text mb-2">Kích thước:</p>
-                            <div class="flex space-x-2">
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="size-3" value="70x70" class="form-radio text-primary focus:ring-primary" checked>
-                                    <span class="text-sm">70x70cm</span>
-                                </label>
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="size-3" value="50x50" class="form-radio text-primary focus:ring-primary">
-                                    <span class="text-sm">50x50cm</span>
-                                </label>
+                            
+                            <!-- Quick Actions Overlay -->
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-3">
+                                <button onclick="quickView('Xoắn Sắc Núi')" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110" title="Xem nhanh">
+                                    <i class="fas fa-eye text-lg"></i>
+                                </button>
+                                <button onclick="addToCart('Xoắn Sắc Núi')" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110" title="Thêm vào giỏ">
+                                    <i class="fas fa-shopping-cart text-lg"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2 text-dark-text hover:text-primary transition duration-300">Xoắn Sắc Núi</h3>
+                        <!-- Thumbnail Gallery -->
+                        <div data-target-id="3" class="sub-image-gallery flex justify-center gap-2 py-3 px-4 bg-neutral-50 border-b border-neutral-200">
+                            <p class="text-xs text-gray-400 italic">Đang tải ảnh...</p>
                         </div>
-                        
-                        <p class="text-xl font-bold text-secondary mb-4">129.000 VNĐ</p>
-                        <p class="text-dark-text/70 mb-4 leading-relaxed text-sm sm:text-base md:text-xl">Hoa văn thổ cẩm H'Mông (xoắn ốc, vuông, tam giác).</p>
-                        
-                        <button onclick="addToCart('Xoắn Sắc Núi')" class="w-full bg-primary text-white font-semibold py-3 rounded-full hover:bg-secondary transition duration-300 shadow-md mt-auto">
-                            THÊM VÀO GIỎ
-                        </button>
+
+                        <!-- Content -->
+                        <div class="p-5 flex-grow flex flex-col">
+                            <!-- Category Tag -->
+                            <div class="mb-2">
+                                <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md uppercase tracking-wider">Thổ Cẩm H'Mông</span>
+                            </div>
+                            
+                            <!-- Product Name -->
+                            <h3 class="text-xl font-bold text-dark-text mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-1">
+                                Xoắn Sắc Núi
+                            </h3>
+                            
+                            <!-- Description -->
+                            <p class="text-dark-text/70 text-sm mb-4 leading-relaxed line-clamp-2 flex-grow">
+                                Hoa văn thổ cẩm H'Mông với họa tiết xoắn ốc, vuông, tam giác đặc trưng mang vẻ đẹp núi rừng Tây Bắc.
+                            </p>
+                            
+                            <!-- Size Selector -->
+                            <div class="mb-4">
+                                <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Chọn kích thước:</p>
+                                <div class="flex gap-2">
+                                    <label class="size-btn-wrapper cursor-pointer">
+                                        <input type="radio" name="size-3" value="70x70" class="sr-only" checked>
+                                        <span class="size-btn bg-neutral-100 text-dark-text px-4 py-2 rounded-lg text-sm font-semibold border-2 border-transparent hover:border-primary/50 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">
+                                            70x70cm
+                                        </span>
+                                    </label>
+                                    <label class="size-btn-wrapper cursor-pointer">
+                                        <input type="radio" name="size-3" value="50x50" class="sr-only">
+                                        <span class="size-btn bg-neutral-100 text-dark-text px-4 py-2 rounded-lg text-sm font-semibold border-2 border-transparent hover:border-primary/50 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">
+                                            50x50cm
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Price and Add to Cart -->
+                            <div class="flex items-center justify-between gap-3 pt-4 border-t border-neutral-200">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 line-through">159.000₫</span>
+                                    <span class="text-2xl font-bold text-secondary">129.000₫</span>
+                                </div>
+                                <button onclick="addToCart('Xoắn Sắc Núi')" class="bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-5 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 flex items-center gap-2 whitespace-nowrap">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span class="hidden sm:inline">Thêm</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div data-product-id="2" data-product-name="Cánh Én Mùa Xuân" data-product-price="129000" class="product-card bg-neutral p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+                    <!-- Product Card 2: Cánh Én Mùa Xuân -->
+                    <div data-product-id="2" data-product-name="Cánh Én Mùa Xuân" data-product-price="129000" class="product-card group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col h-full overflow-hidden border border-neutral-200">
                         
-                        <div class="main-image-container">
-                            <img id="main-image-2" src="media/patern 2.png" alt="Khăn Cánh Én Mùa Xuân" class="w-full aspect-square object-cover rounded-lg mb-4 border-2 border-primary/30"
+                        <div class="main-image-container relative overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
+                            <!-- Badge -->
+                            <div class="absolute top-3 left-3 z-20">
+                                <span class="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
+                                    <i class="fas fa-star mr-1"></i> Mới
+                                </span>
+                            </div>
+                            
+                            <!-- Wishlist Button -->
+                            <button class="wishlist-btn absolute top-3 right-3 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-400 hover:text-red-500 transition-all duration-300 transform hover:scale-110" onclick="toggleWishlist(this)">
+                                <i class="far fa-heart text-lg"></i>
+                            </button>
+                            
+                            <!-- Main Image -->
+                            <img id="main-image-2" src="media/patern 2.png" alt="Khăn Cánh Én Mùa Xuân" 
+                                 class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
                                  onerror="this.src='https://placehold.co/800x800/D84040/FFFFFF?text=Khăn+2'" />
-                        </div>
-                        
-                        <div data-target-id="2" class="mt-2 mb-4 flex space-x-2 overflow-x-auto pb-2 sub-image-gallery">
-                            <p class="text-xs text-gray-500 italic">Đang tải ảnh phụ...</p>
-                        </div>
-
-                        <div class="mt-4">
-                            <p class="text-sm font-semibold text-dark-text mb-2">Kích thước:</p>
-                            <div class="flex space-x-2">
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="size-2" value="70x70" class="form-radio text-primary focus:ring-primary" checked>
-                                    <span class="text-sm">70x70cm</span>
-                                </label>
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="size-2" value="50x50" class="form-radio text-primary focus:ring-primary">
-                                    <span class="text-sm">50x50cm</span>
-                                </label>
+                            
+                            <!-- Quick Actions Overlay -->
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-3">
+                                <button onclick="quickView('Cánh Én Mùa Xuân')" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110" title="Xem nhanh">
+                                    <i class="fas fa-eye text-lg"></i>
+                                </button>
+                                <button onclick="addToCart('Cánh Én Mùa Xuân')" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110" title="Thêm vào giỏ">
+                                    <i class="fas fa-shopping-cart text-lg"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2 text-dark-text hover:text-primary transition duration-300">Cánh Én Mùa Xuân</h3>
+                        <!-- Thumbnail Gallery -->
+                        <div data-target-id="2" class="sub-image-gallery flex justify-center gap-2 py-3 px-4 bg-neutral-50 border-b border-neutral-200">
+                            <p class="text-xs text-gray-400 italic">Đang tải ảnh...</p>
                         </div>
-                        
-                        <p class="text-xl font-bold text-secondary mb-4">129.000 VNĐ</p>
-                        <p class="text-dark-text/70 mb-4 leading-relaxed text-sm sm:text-base md:text-xl">Hoạ tiết đuôi én (khau cút) của người Thái, phối với hoa ban.</p>
 
-                        <button onclick="addToCart('Cánh Én Mùa Xuân')" class="w-full bg-primary text-white font-semibold py-3 rounded-full hover:bg-secondary transition duration-300 shadow-md mt-auto">
-                            THÊM VÀO GIỎ
-                        </button>
+                        <!-- Content -->
+                        <div class="p-5 flex-grow flex flex-col">
+                            <div class="mb-2">
+                                <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md uppercase tracking-wider">Thổ Cẩm Thái</span>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-dark-text mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-1">
+                                Cánh Én Mùa Xuân
+                            </h3>
+                            
+                            <p class="text-dark-text/70 text-sm mb-4 leading-relaxed line-clamp-2 flex-grow">
+                                Họa tiết đuôi én (khau cút) của người Thái kết hợp tinh tế với hoa ban trắng, biểu tượng của mùa xuân Tây Bắc.
+                            </p>
+                            
+                            <div class="mb-4">
+                                <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Chọn kích thước:</p>
+                                <div class="flex gap-2">
+                                    <label class="size-btn-wrapper cursor-pointer">
+                                        <input type="radio" name="size-2" value="70x70" class="sr-only" checked>
+                                        <span class="size-btn bg-neutral-100 text-dark-text px-4 py-2 rounded-lg text-sm font-semibold border-2 border-transparent hover:border-primary/50 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">
+                                            70x70cm
+                                        </span>
+                                    </label>
+                                    <label class="size-btn-wrapper cursor-pointer">
+                                        <input type="radio" name="size-2" value="50x50" class="sr-only">
+                                        <span class="size-btn bg-neutral-100 text-dark-text px-4 py-2 rounded-lg text-sm font-semibold border-2 border-transparent hover:border-primary/50 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">
+                                            50x50cm
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-3 pt-4 border-t border-neutral-200">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 line-through">159.000₫</span>
+                                    <span class="text-2xl font-bold text-secondary">129.000₫</span>
+                                </div>
+                                <button onclick="addToCart('Cánh Én Mùa Xuân')" class="bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-5 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 flex items-center gap-2 whitespace-nowrap">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span class="hidden sm:inline">Thêm</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div data-product-id="1" data-product-name="Nguyệt Sắc" data-product-price="129000" class="product-card bg-neutral p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+                    <!-- Product Card 1: Nguyệt Sắc -->
+                    <div data-product-id="1" data-product-name="Nguyệt Sắc" data-product-price="129000" class="product-card group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col h-full overflow-hidden border border-neutral-200">
                         
-                        <div class="main-image-container">
-                            <img id="main-image-1" src="media/patern 3.png" alt="Khăn Nguyệt Sắc" class="w-full aspect-square object-cover rounded-lg mb-4 border-2 border-primary/30"
+                        <div class="main-image-container relative overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
+                            <!-- Badge -->
+                            <div class="absolute top-3 left-3 z-20">
+                                <span class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
+                                    <i class="fas fa-gem mr-1"></i> Premium
+                                </span>
+                            </div>
+                            
+                            <!-- Wishlist Button -->
+                            <button class="wishlist-btn absolute top-3 right-3 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-400 hover:text-red-500 transition-all duration-300 transform hover:scale-110" onclick="toggleWishlist(this)">
+                                <i class="far fa-heart text-lg"></i>
+                            </button>
+                            
+                            <!-- Main Image -->
+                            <img id="main-image-1" src="media/patern 3.png" alt="Khăn Nguyệt Sắc" 
+                                 class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-110"
                                  onerror="this.src='https://placehold.co/800x800/A31D1D/FFFFFF?text=Khăn+1'" />
-                        </div>
-
-                        <div data-target-id="1" class="mt-2 mb-4 flex space-x-2 overflow-x-auto pb-2 sub-image-gallery">
-                            <p class="text-xs text-gray-500 italic">Đang tải ảnh phụ...</p>
-                        </div>
-
-                        <div class="mt-4">
-                            <p class="text-sm font-semibold text-dark-text mb-2">Kích thước:</p>
-                            <div class="flex space-x-2">
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="size-1" value="70x70" class="form-radio text-primary focus:ring-primary" checked>
-                                    <span class="text-sm">70x70cm</span>
-                                </label>
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="size-1" value="50x50" class="form-radio text-primary focus:ring-primary">
-                                    <span class="text-sm">50x50cm</span>
-                                </label>
+                            
+                            <!-- Quick Actions Overlay -->
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-3">
+                                <button onclick="quickView('Nguyệt Sắc')" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110" title="Xem nhanh">
+                                    <i class="fas fa-eye text-lg"></i>
+                                </button>
+                                <button onclick="addToCart('Nguyệt Sắc')" class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110" title="Thêm vào giỏ">
+                                    <i class="fas fa-shopping-cart text-lg"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2 text-dark-text hover:text-primary transition duration-300">Nguyệt Sắc</h3>
+                        <!-- Thumbnail Gallery -->
+                        <div data-target-id="1" class="sub-image-gallery flex justify-center gap-2 py-3 px-4 bg-neutral-50 border-b border-neutral-200">
+                            <p class="text-xs text-gray-400 italic">Đang tải ảnh...</p>
                         </div>
-                        
-                        <p class="text-xl font-bold text-secondary mb-4">129.000 VNĐ</p>
-                        <p class="text-dark-text/70 mb-4 leading-relaxed text-sm sm:text-base md:text-xl">Cảm hứng từ hoa văn của người Dao Tiền (đồng tiền xu, hat bí).</p>
-                        
-                        <button onclick="addToCart('Nguyệt Sắc')" class="w-full bg-primary text-white font-semibold py-3 rounded-full hover:bg-secondary transition duration-300 shadow-md mt-auto">
-                            THÊM VÀO GIỎ
-                        </button>
+
+                        <!-- Content -->
+                        <div class="p-5 flex-grow flex flex-col">
+                            <div class="mb-2">
+                                <span class="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md uppercase tracking-wider">Thổ Cẩm Dao Tiền</span>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-dark-text mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-1">
+                                Nguyệt Sắc
+                            </h3>
+                            
+                            <p class="text-dark-text/70 text-sm mb-4 leading-relaxed line-clamp-2 flex-grow">
+                                Cảm hứng từ hoa văn độc đáo của người Dao Tiền với đồng tiền xu và hat bí, biểu tượng của may mắn và thịnh vượng.
+                            </p>
+                            
+                            <div class="mb-4">
+                                <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Chọn kích thước:</p>
+                                <div class="flex gap-2">
+                                    <label class="size-btn-wrapper cursor-pointer">
+                                        <input type="radio" name="size-1" value="70x70" class="sr-only" checked>
+                                        <span class="size-btn bg-neutral-100 text-dark-text px-4 py-2 rounded-lg text-sm font-semibold border-2 border-transparent hover:border-primary/50 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">
+                                            70x70cm
+                                        </span>
+                                    </label>
+                                    <label class="size-btn-wrapper cursor-pointer">
+                                        <input type="radio" name="size-1" value="50x50" class="sr-only">
+                                        <span class="size-btn bg-neutral-100 text-dark-text px-4 py-2 rounded-lg text-sm font-semibold border-2 border-transparent hover:border-primary/50 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary">
+                                            50x50cm
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between gap-3 pt-4 border-t border-neutral-200">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 line-through">159.000₫</span>
+                                    <span class="text-2xl font-bold text-secondary">129.000₫</span>
+                                </div>
+                                <button onclick="addToCart('Nguyệt Sắc')" class="bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-5 rounded-xl hover:from-secondary hover:to-primary transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 flex items-center gap-2 whitespace-nowrap">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span class="hidden sm:inline">Thêm</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-
-                    
-
-                    
                 </div>
             </section>
 

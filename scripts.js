@@ -604,6 +604,123 @@ document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
     });
 });
 
+// ========================================
+// NEW PRODUCT CARD FUNCTIONS
+// ========================================
+
+/**
+ * Toggle wishlist button state
+ * @param {HTMLElement} btn - The wishlist button element
+ */
+function toggleWishlist(btn) {
+    const icon = btn.querySelector('i');
+    
+    if (icon.classList.contains('far')) {
+        // Add to wishlist
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+        icon.classList.add('text-red-500');
+        btn.classList.add('bg-red-50');
+        
+        // Optional: Show toast notification
+        showToast('Đã thêm vào yêu thích!', 'success');
+    } else {
+        // Remove from wishlist
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+        icon.classList.remove('text-red-500');
+        btn.classList.remove('bg-red-50');
+        
+        showToast('Đã xóa khỏi yêu thích', 'info');
+    }
+}
+
+/**
+ * Quick view product (placeholder function)
+ * @param {string} productName - Name of the product to view
+ */
+function quickView(productName) {
+    // Placeholder for quick view modal functionality
+    // You can implement a modal to show product details
+    console.log('Quick view:', productName);
+    
+    // Example: Scroll to product and highlight it
+    const productCard = document.querySelector(`[data-product-name="${productName}"]`);
+    if (productCard) {
+        productCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        productCard.classList.add('ring-4', 'ring-primary', 'ring-offset-2');
+        setTimeout(() => {
+            productCard.classList.remove('ring-4', 'ring-primary', 'ring-offset-2');
+        }, 2000);
+    }
+}
+
+/**
+ * Show toast notification
+ * @param {string} message - Message to display
+ * @param {string} type - Type of notification ('success', 'error', 'info')
+ */
+function showToast(message, type = 'info') {
+    // Remove existing toast if any
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast-notification fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white font-semibold z-[10000] transform transition-all duration-300 translate-y-full opacity-0`;
+    
+    // Set color based on type
+    switch(type) {
+        case 'success':
+            toast.classList.add('bg-green-600');
+            break;
+        case 'error':
+            toast.classList.add('bg-red-600');
+            break;
+        default:
+            toast.classList.add('bg-blue-600');
+    }
+    
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.remove('translate-y-full', 'opacity-0');
+    }, 100);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        toast.classList.add('translate-y-full', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// Enhanced size selector initialization with visual feedback
+function initializeSizeSelectors() {
+    document.querySelectorAll('.product-card').forEach(card => {
+        const sizeRadios = card.querySelectorAll('input[name^="size-"]');
+        sizeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                updatePrice(card);
+                
+                // Add visual feedback animation
+                const btn = radio.nextElementSibling;
+                btn.classList.add('scale-105');
+                setTimeout(() => btn.classList.remove('scale-105'), 200);
+            });
+        });
+        // Update initial price
+        updatePrice(card);
+    });
+}
+
+// ========================================
+// MAIN INITIALIZATION
+// ========================================
+
 // GỌI HÀM KHỞI TẠO
 document.addEventListener('DOMContentLoaded', () => {
     renderSubImages();
@@ -613,4 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Warm up remaining hero slides progressively (reduces initial load spike)
     preloadHeroSlides({ initialDelay: 1000, interval: 700 });
     updateCartCount(); // Cập nhật số lượng ban đầu
+    
+    // Log for debugging
+    console.log('🎨 Product cards initialized successfully!');
 });
